@@ -1,25 +1,38 @@
 
-# mteucb
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# mteucb：Uniform Confidence Band for the Marginal Treatment Function.
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of mteucb is to ...
+The **mteucb** package cmputes uniform confidence bands for the MTE
+function proposed in Okui and Tsuda (2024+). A uniform confidence band
+covers the true function with a prespecified probability. These bands
+are used to make statistical inferences on the shape of the MTE
+function. Uniform confidence bands are particularly useful because they
+can visualize the statistical uncertainty behind the estimated MTE
+function.
 
 ## Installation
 
-You can install the development version of mteucb like so:
+You can install the development version of mteucb from GitHub:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+# install.packages("devtools") if necessary
+devtools::install_github("TXT872/mteucb",build_vignettes = TRUE)
 ```
 
-## Example
+## Vignette
 
-This is a basic example which shows you how to solve a common problem:
+For more detalis, see the package vignette with:
 
 ``` r
-library(mteucb)
-## basic example code
+# Getting Started with the mteucb Package Vignette
+vignette("mteucb")
 ```
 
+## References
+
+-Okui, R. & Tsuda, T. (2024+). Uniform Confidence Band for Marginal
+Treatment Effect Function. will be available on arXiv.
