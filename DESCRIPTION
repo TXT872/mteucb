@@ -2,7 +2,8 @@ Package: mteucb
 Title: Marginal Treatment Effect
 Version: 0.0.1
 Authors@R: 
-    person("Toshiki", "Tsuda", email="tsuda.toshiki.r73@kyoto-u.jp", role = c("aut", "cre"))
+     c(person("Ryo", "Okui", email="okuiryo@e.u-tokyo.ac.jp", role = c("aut", "cph")),
+    person("Toshiki", "Tsuda", email="tsuda.toshiki.r73@kyoto-u.jp", role = c("aut", "cre", "cph")))
 Description: This package cmputes  uniform confidence bands for the MTE function proposed in Okui and Tsuda (2024+). A uniform confidence band covers the true function with a prespecified probability. These bands are used to make statistical inferences on the shape of the MTE function. Uniform confidence bands are particularly useful because they can visualize the statistical uncertainty behind the estimated MTE function.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -19,3 +20,4 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://TXT872.github.io/mteucb/
