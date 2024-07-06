@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# mteucb：Uniform Confidence Band for the Marginal Treatment Function.
+# mteucb：Uniform Confidence Band for the Marginal Treatment Function (tentative).
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -42,5 +42,3 @@ vignette("mteucb")
 -Okui, R. & Tsuda, T. (2024+).
 Uniform Confidence Band for Marginal Treatment Effect Function.
 will be available on arXiv.
-
-
