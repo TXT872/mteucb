@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# mteucb：Uniform Confidence Band for the Marginal Treatment Function (tative).
+# mteucb：Uniform Confidence Band for the Marginal Treatment Function (tentative).
 
 <!-- badges: start -->
 <!-- badges: end -->
