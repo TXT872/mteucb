@@ -3,7 +3,10 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   beta_gen: beta_gen.html
-last_built: 2024-07-14T13:06Z
+  p_hut_gen: p_hut_gen.html
+  unif_gen: unif_gen.html
+  uniform_con_gen: uniform_con_gen.html
+last_built: 2024-07-14T13:15Z
 urls:
   reference: https://TXT872.github.io/mteucb/reference
   article: https://TXT872.github.io/mteucb/articles
