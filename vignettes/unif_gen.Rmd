@@ -1,0 +1,19 @@
+---
+title: "unif_gen"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{unif_gen}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(mteucb)
+```
