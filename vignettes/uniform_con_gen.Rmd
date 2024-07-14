@@ -1,5 +1,5 @@
 ---
-title: "uniform_con_gen"
+title: "uniform_con_gen (under construction)"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{uniform_con_gen}

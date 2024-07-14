@@ -1,5 +1,5 @@
 ---
-title: "beta_gen"
+title: "beta_gen (under construction)"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{beta_gen}

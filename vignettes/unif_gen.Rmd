@@ -1,5 +1,5 @@
 ---
-title: "unif_gen"
+title: "unif_gen (under construction)"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{unif_gen}
