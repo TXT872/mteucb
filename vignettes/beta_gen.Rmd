@@ -1,8 +1,8 @@
 ---
-title: "mteucb"
+title: "beta_gen"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{mteucb}
+  %\VignetteIndexEntry{beta_gen}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
