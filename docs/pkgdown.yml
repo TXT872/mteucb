@@ -2,8 +2,8 @@ pandoc: 3.1.11
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  mteucb: mteucb.html
-last_built: 2024-07-14T12:33Z
+  beta_gen: beta_gen.html
+last_built: 2024-07-14T12:55Z
 urls:
   reference: https://TXT872.github.io/mteucb/reference
   article: https://TXT872.github.io/mteucb/articles
