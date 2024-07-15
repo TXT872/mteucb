@@ -35,9 +35,9 @@ For more detalis, see the package vignette with:
 ``` r
 # Getting Started with the mteucb Package Vignette
 
-vignette("beta_gen") # Estimates a Parametric Part of a MTE Function 
-
 vignette("p_hut_gen") # Generates Estimated Propensity Scores
+
+vignette("beta_gen") # Estimates a Parametric Part of a MTE Function 
 
 vignette("unif_gen") # Provides the Uniform Confidence Band for a MTE Function 
 #Given a Parametric Part of a MTE Function is Estimated
