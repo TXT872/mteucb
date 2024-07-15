@@ -11,8 +11,9 @@ function proposed in Okui and Tsuda (2024+). A uniform confidence band
 covers the true function with a prespecified probability. These bands
 are used to make statistical inferences on the shape of the MTE
 function. Uniform confidence bands are particularly useful because they
-can visualize the statistical uncertainty behind the estimated MTE
-function.
+can visualize the statistical uncertainty
+
+behind the estimated MTE function.
 
 ## Installation
 
