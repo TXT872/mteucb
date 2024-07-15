@@ -163,7 +163,7 @@ beta_gen<-function(outcome_name=outcome_name,
 
   P_hut_covariate<- data.frame(matrix(nrow=SS,ncol=length(covariate_List)))
   P_hut_covariate<-Dataframe[,covariate_List]*Dataframe$P_hut
-  colnames(P_hut_covariate) <- paste("P_",covariate_List,sep="")
+
 
 
 
