@@ -226,6 +226,9 @@ beta_gen<-function(outcome_name=outcome_name,
   colnames(beta1_est)<-"beta1_est"
   rownames(beta1_est)<-covariate_List
 
+
+
+
   beta0_se<-as.matrix(est_result0$std)
   colnames(beta0_se)<-"beta0_se"
   rownames(beta0_se)<-covariate_List
