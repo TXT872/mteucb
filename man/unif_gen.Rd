@@ -57,7 +57,7 @@ A list that contains the following elements:
 \item{Plot}{A list that contains the ggplot elements for unifrom confidence band}
 }
 \description{
-\code{unif_gen} computes unifrom confidence bands of the MTE function given the parametric part of MTE is known. For details, see Okui and Tsuda (2024+).
+\code{unif_gen} computes unifrom confidence bands of the MTE function given the parametric part of MTE is known. For details, see Tsuda, Jin and Okui (2024+).
 }
 \examples{
 \dontrun{
@@ -131,7 +131,7 @@ significance_level=0.05)
 
 }
 \references{
-Okui, R. & Tsuda, T. (2024+).
+Tsuda, Jin and Okui (2024+).
 Uniform Confidence Band for Marginal Treatment Effect Function.
 will be available on arXiv
 }

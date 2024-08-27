@@ -67,7 +67,7 @@ A list that contains the following elements:
 \item{Plot}{A list that contains the ggplot elements for unifrom confidence band}
 }
 \description{
-\code{uniform_con_gen} computes uniform confidence bands for a MTE function that is estimated by a semiparametric estimation method. For details, see Okui and Tsuda (2024+).
+\code{uniform_con_gen} computes uniform confidence bands for a MTE function that is estimated by a semiparametric estimation method. For details, see Tsuda, Jin and Okui (2024+).
 }
 \examples{
 \dontrun{
@@ -132,7 +132,7 @@ Final_Result_Ex<-uniform_con_gen(outcome_name="Y",
 
 }
 \references{
-Okui, R. & Tsuda, T. (2024+).
+Tsuda, Jin and Okui (2024+).
 Uniform Confidence Band for Marginal Treatment Effect Function.
 will be available on arXiv
 }
