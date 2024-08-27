@@ -1,6 +1,6 @@
 #' Uniform Confidence Bands for a Marginal Treatment Effect (MTE) Function .
 #'
-#' `uniform_con_gen` computes uniform confidence bands for a MTE function that is estimated by a semiparametric estimation method. For details, see Okui and Tsuda (2024+).
+#' `uniform_con_gen` computes uniform confidence bands for a MTE function that is estimated by a semiparametric estimation method. For details, see Tsuda, Jin and Okui (2024+).
 #'
 #' @param outcome_name The name of the outcome
 #' @param covariate_name The name of covariate
@@ -98,7 +98,7 @@
 #'
 #'
 #' @references
-#' Okui, R. & Tsuda, T. (2024+).
+#' Tsuda, Jin and Okui (2024+).
 #' Uniform Confidence Band for Marginal Treatment Effect Function.
 #' will be available on arXiv
 uniform_con_gen<-function(outcome_name=outcome_name,
