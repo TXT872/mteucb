@@ -7,9 +7,9 @@
 <!-- badges: end -->
 
 The **mteucb** package cmputes uniform confidence bands for the MTE
-function proposed in Okui and Tsuda (2024+). A uniform confidence band
-covers the true function with a prespecified probability. These bands
-are used to make statistical inferences on the shape of the MTE
+function proposed in Tsuda, Jin and Okui (2024+). A uniform confidence
+band covers the true function with a prespecified probability. These
+bands are used to make statistical inferences on the shape of the MTE
 function. Uniform confidence bands are particularly useful because they
 can visualize the statistical uncertainty behind the estimated MTE
 function.
@@ -42,5 +42,5 @@ vignette("uniform_con_gen") # Provides the Uniform Confidence Band for a MTE Fun
 
 ## References
 
--Okui, R. & Tsuda, T. (2024+). Uniform Confidence Band for Marginal
-Treatment Effect Function. will be available on arXiv.
+-Tsuda, T, Jin, Y., & Okui, R. (2024+). Uniform Confidence Band for
+Marginal Treatment Effect Function. will be available on arXiv.
