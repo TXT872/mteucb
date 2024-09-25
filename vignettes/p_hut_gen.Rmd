@@ -127,6 +127,7 @@ head(RESULT_P_hut$Data)
 head(RESULT_P_hut$SampleSize)
 head(RESULT_P_hut$P_hut)
 
+
 ```
 
 ## Note

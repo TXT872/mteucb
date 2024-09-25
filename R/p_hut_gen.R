@@ -17,6 +17,7 @@
 #' for estimating the propensity score or not. The default choice is 'TRUE'.
 #'
 #'
+#'
 #' @return A list that contains the following elements:
 #' \item{Data}{A data frame that contains the following elements: \cr outcome, covariate, instrument variables, treatment and propensity score}
 #' \item{Sample Size}{Sample Size after the trimming}
