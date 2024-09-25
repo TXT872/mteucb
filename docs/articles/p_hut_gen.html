@@ -76,9 +76,182 @@
 
     
     
+<div class="section level2">
+<h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
+</h2>
+<p>The <strong>mteucb</strong> provides four functions as below:</p>
+<ul>
+<li>
+<code><a href="../reference/p_hut_gen.html">p_hut_gen()</a></code>: Estimation of propensity score thourgh
+maximum likelihood estimation.</li>
+<li>
+<code>beta_hut_gen()</code>: Estimation of finite parameters by
+partially linear estimation.</li>
+<li>
+<code><a href="../reference/p_hut_gen.html">p_hut_gen()</a></code>:</li>
+<li>
+<code><a href="../reference/p_hut_gen.html">p_hut_gen()</a></code>:</li>
+</ul>
+<p>In this page, we introduce how to use <code><a href="../reference/p_hut_gen.html">p_hut_gen()</a></code> for
+obtaining the estimated propensity score.</p>
+<div class="section level4">
+<h4 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a>
+</h4>
+<ul>
+<li>
+<code>outcome_name</code>: The name of the outcome</li>
+<li>
+<code>covariate_name</code>: The name of covariate</li>
+<li>
+<code>instrument_name</code>: The name of instrument variables</li>
+<li>
+<code>treatment_name</code>: The name of a treatment variable</li>
+<li>
+<code>data</code>: data.frame to be used for the estimation of
+MTE</li>
+<li>
+<code>family</code>: The distribution used for the calculation of
+the propensity score. You can choose “probit” or “logit”. The default
+choice is “probit”.</li>
+<li>
+<code>trim</code>: To mitigate the effect of ill behavior of
+estimtaed propensity scores, we set those less than the value of trim or
+larger than (1-the value of trim) as the value of the value of trim or
+(1-the value of trim).</li>
+<li>
+<code>intercept</code>: ‘TRUE’ or ‘FLASE’ option to decide whether
+you include an intercept for estimating the propensity score or not. The
+default choice is ‘TRUE’.</li>
+</ul>
+</div>
+<div class="section level4">
+<h4 id="returns">Returns<a class="anchor" aria-label="anchor" href="#returns"></a>
+</h4>
+<p><code><a href="../reference/p_hut_gen.html">p_hut_gen()</a></code> returns a list that contains the following
+three elements:</p>
+<ul>
+<li><p><code>Data</code>: A data frame equipped with the estimated
+propensity score.</p></li>
+<li><p><code>SampleSize</code>: The number of data used to estimate the
+propensity score.</p></li>
+<li><p><code>P_hut</code>: A data frame that only includes the estimated
+propensity score.</p></li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<p>First, we generate the data used for the estimation of MTE, icluding
+outcome, covariates, instruments, and tretament.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://TXT872.github.io/mteucb/">mteucb</a></span><span class="op">)</span></span></code></pre></div>
-  </main>
+<code class="sourceCode R"><span><span class="co"># Load the package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://TXT872.github.io/mteucb/">mteucb</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Generate artificial data</span></span>
+<span><span class="co">#: The number of cross-sectional units</span></span>
+<span><span class="co"># tau: The length of time series</span></span>
+<span><span class="co"># continuous: Generate a continuous (resp. discrete) covariate if it is TRUE (resp. FALSE).</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#Generate covariates and instruments with sample size 2000.</span></span>
+<span><span class="va">SS</span><span class="op">&lt;-</span><span class="fl">2000</span></span>
+<span><span class="va">X1</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">SS</span>,mean<span class="op">=</span><span class="fl">0</span>,sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">X2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">SS</span>,mean<span class="op">=</span><span class="fl">0</span>,sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">X3</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">SS</span>,mean<span class="op">=</span><span class="fl">0</span>,sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">X4</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">SS</span>,mean<span class="op">=</span><span class="fl">0</span>,sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">Z1</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">SS</span>,mean<span class="op">=</span><span class="fl">0</span>,sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">Z2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">SS</span>,mean<span class="op">=</span><span class="fl">0</span>,sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">Z3</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">SS</span>,mean<span class="op">=</span><span class="fl">0</span>,sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">Z4</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">SS</span>,mean<span class="op">=</span><span class="fl">0</span>,sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#Generate unobserved heterogeneity and errors to generate outcome and treatment</span></span>
+<span><span class="va">E0</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0.5</span>,<span class="fl">0.3</span><span class="op">)</span></span>
+<span><span class="va">E1</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">1</span>,<span class="fl">0.8</span><span class="op">)</span></span>
+<span><span class="va">E2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>,<span class="fl">0.8</span>,<span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">E</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">E0</span>,<span class="va">E1</span>,<span class="va">E2</span><span class="op">)</span></span>
+<span><span class="va">E4</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html" class="external-link">mvrnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">SS</span>,mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>,Sigma<span class="op">=</span><span class="va">E</span><span class="op">)</span></span>
+<span><span class="va">U0</span><span class="op">&lt;-</span><span class="va">E4</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">U1</span><span class="op">&lt;-</span><span class="va">E4</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">V</span><span class="op">&lt;-</span><span class="va">E4</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span></span>
+<span><span class="va">Expl</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">X1</span>,<span class="va">X2</span>,<span class="va">X3</span>,<span class="va">X4</span><span class="op">)</span></span>
+<span><span class="va">Instr</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">X1</span>,<span class="va">X2</span>,<span class="va">X3</span>,<span class="va">X4</span>,<span class="va">Z1</span>,<span class="va">Z2</span>,<span class="va">Z3</span>,<span class="va">Z4</span><span class="op">)</span></span>
+<span><span class="va">PInstr</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">Z1</span>,<span class="va">Z2</span>,<span class="va">Z3</span>,<span class="va">Z4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#Define parameters.</span></span>
+<span><span class="va">beta0</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">0.1</span>,<span class="op">-</span><span class="fl">0.1</span>,<span class="op">-</span><span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="va">beta1</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>,<span class="fl">0.4</span>,<span class="op">-</span><span class="fl">0.4</span>,<span class="op">-</span><span class="fl">0.8</span><span class="op">)</span></span>
+<span><span class="va">ganma0</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.3</span>,<span class="fl">0.3</span>,<span class="fl">0.3</span>,<span class="fl">0.3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#Generate outcome and treatment</span></span>
+<span><span class="va">D</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="va">SS</span><span class="op">)</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">SS</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">(</span><span class="va">ganma0</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="op">(</span><span class="va">Instr</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">&gt;</span><span class="va">V</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">D</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">=</span><span class="fl">1</span><span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">Y</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="va">SS</span><span class="op">)</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">SS</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">Y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">&lt;-</span><span class="va">D</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">*</span><span class="op">(</span><span class="op">(</span><span class="va">beta1</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span><span class="va">Expl</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span><span class="op">+</span><span class="va">U1</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">D</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="op">(</span><span class="va">beta0</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span><span class="va">Expl</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span><span class="op">+</span><span class="va">U0</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">demo</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">Y</span>,<span class="va">Expl</span>,<span class="va">PInstr</span>,<span class="va">D</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>We can check the generated variable by using <code><a href="https://rdrr.io/r/utils/head.html" class="external-link">head()</a></code>.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">demo</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           Y         X1          X2         X3          X4         Z1         Z2</span></span>
+<span><span class="co">#&gt; 1 0.1702768 -0.6264538 -0.88614959 -1.1346302 -0.61882708  0.2637034 -0.8043316</span></span>
+<span><span class="co">#&gt; 2 1.8243183  0.1836433 -1.92225490  0.7645571 -1.10942196 -0.8294518 -1.0565257</span></span>
+<span><span class="co">#&gt; 3 0.6071792 -0.8356286  1.61970074  0.5707101 -2.17033523 -1.4616348 -1.0353958</span></span>
+<span><span class="co">#&gt; 4 0.7473837  1.5952808  0.51926990 -1.3516939 -0.03130307  1.6839902 -1.1855604</span></span>
+<span><span class="co">#&gt; 5 1.5750997  0.3295078 -0.05584993 -2.0298855 -0.26039848 -1.5443243 -0.5004395</span></span>
+<span><span class="co">#&gt; 6 1.7978026 -0.8204684  0.69641761  0.5904787  0.53443047 -0.1908871 -0.5249887</span></span>
+<span><span class="co">#&gt;            Z3         Z4 D</span></span>
+<span><span class="co">#&gt; 1 -0.93910663  0.5232667 0</span></span>
+<span><span class="co">#&gt; 2  1.39366493  0.9935537 0</span></span>
+<span><span class="co">#&gt; 3  1.62581486  0.2737370 0</span></span>
+<span><span class="co">#&gt; 4  0.40900106 -0.6949193 0</span></span>
+<span><span class="co">#&gt; 5 -0.09255856 -0.7180502 0</span></span>
+<span><span class="co">#&gt; 6  0.20609871 -0.1019895 0</span></span></code></pre></div>
+<p>By using <code><a href="../reference/p_hut_gen.html">p_hut_gen()</a></code>, we obtain a dataframe with the
+estimated propensity score.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">RESULT_P_hut</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/p_hut_gen.html">p_hut_gen</a></span><span class="op">(</span>outcome_name<span class="op">=</span><span class="st">"Y"</span>,</span>
+<span>                                 covariate_name<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X1"</span>,<span class="st">"X2"</span>,<span class="st">"X3"</span>,<span class="st">"X4"</span><span class="op">)</span>,</span>
+<span>                                 instrument_name<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Z1"</span>,<span class="st">"Z2"</span>,<span class="st">"Z3"</span>,<span class="st">"Z4"</span><span class="op">)</span>,</span>
+<span>                                 treatment_name<span class="op">=</span> <span class="st">"D"</span>,</span>
+<span>                                 data<span class="op">=</span><span class="va">demo</span>,</span>
+<span>                                 family<span class="op">=</span><span class="st">"probit"</span>, </span>
+<span>                                 trim<span class="op">=</span><span class="fl">0.01</span>, <span class="co">#</span></span>
+<span>                                 intercept<span class="op">=</span><span class="cn">TRUE</span></span>
+<span>                                <span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">RESULT_P_hut</span><span class="op">$</span><span class="va">Data</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           Y          X1         X2          X3         X4         Z1</span></span>
+<span><span class="co">#&gt; 1 -1.832737  0.73832471 -1.3102835  1.61034155  1.6083702  0.5471262</span></span>
+<span><span class="co">#&gt; 2 -2.476944 -0.30538839 -0.2080786  1.36829791  0.1856225 -0.4198042</span></span>
+<span><span class="co">#&gt; 3 -1.116913 -0.04493361  1.2912720 -0.08479864  1.3156956  1.0565484</span></span>
+<span><span class="co">#&gt; 4 -1.912261  0.94383621 -0.8751468  1.66760644  1.4469536 -2.2305143</span></span>
+<span><span class="co">#&gt; 5  1.726090  0.59390132  1.4251896  0.30185634  1.0134914 -0.7637768</span></span>
+<span><span class="co">#&gt; 6  2.523938  0.61982575  2.3833280 -0.09983139 -0.6731739 -0.5497419</span></span>
+<span><span class="co">#&gt;            Z2          Z3         Z4 D     P_hut</span></span>
+<span><span class="co">#&gt; 1  0.47196813 -0.46000136  1.6316872 1 0.9359741</span></span>
+<span><span class="co">#&gt; 2  1.25931803 -1.46018697 -2.0730307 1 0.4289610</span></span>
+<span><span class="co">#&gt; 3 -0.08022106  1.04643156 -0.6111537 1 0.9180863</span></span>
+<span><span class="co">#&gt; 4 -0.09943981  1.05350591  0.2318669 1 0.8162267</span></span>
+<span><span class="co">#&gt; 5  1.85777954  0.05590213 -0.9673166 1 0.9354695</span></span>
+<span><span class="co">#&gt; 6 -1.61676311  0.65319738 -0.5557610 1 0.6779880</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">RESULT_P_hut</span><span class="op">$</span><span class="va">SampleSize</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1916</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">RESULT_P_hut</span><span class="op">$</span><span class="va">P_hut</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.9359741 0.4289610 0.9180863 0.8162267 0.9354695 0.6779880</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a>
+</h2>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
