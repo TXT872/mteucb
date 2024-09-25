@@ -119,7 +119,7 @@ RESULT_P_hut<-p_hut_gen(outcome_name="Y",
                                  instrument_name=c("Z1","Z2","Z3","Z4"),
                                  treatment_name= "D",
                                  data=demo,
-                                 family="probit", # We use probit model to estmate the propensity score
+                                 family="probit", 
                                  trim=0.01, #
                                  intercept=TRUE
                                 )
