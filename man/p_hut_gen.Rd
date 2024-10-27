@@ -29,7 +29,7 @@ p_hut_gen(
 \item{family}{The distribution used for the calculation of the propensity score.
 You can choose "probit" or "logit". The default choice is "probit".}
 
-\item{trim}{To mitigate the effect of ill behavior of estimtaed propensity scores,
+\item{trim, }{To mitigate the effect of ill behavior of estimtaed propensity scores,
 we set those less than the value of trim or larger than (1-the value of trim) as the value of the value of trim  or (1-the value of trim).}
 
 \item{intercept}{'TRUE' or 'FLASE' option to decide whether you include an intercept
@@ -83,14 +83,14 @@ for(i in 1:SS){
 demo=as.data.frame(cbind(Y,Expl,PInstr,D))
 
 RESULT_P_hut<-p_hut_gen(outcome_name="Y",
-                                 covariate_name=c("X1","X2","X3","X4"),
-                                 instrument_name=c("Z1","Z2","Z3","Z4"),
-                                 treatment_name= "D",
-                                 data=demo,
-                                 family="probit",
-                                 trim=0.01,
-                                 intercept=TRUE
-                                )
+                        covariate_name=c("X1","X2","X3","X4"),
+                        instrument_name=c("Z1","Z2","Z3","Z4"),
+                        treatment_name= "D",
+                        data=demo,
+                        family="probit",
+                        trim=0.01,
+                        intercept=TRUE
+)
 }
 
 

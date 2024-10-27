@@ -1,6 +1,6 @@
 #' Uniform Confidence Bands for a Marginal Treatment Effect (MTE) Function .
 #'
-#' `unif_gen` computes unifrom confidence bands of the MTE function given the parametric part of MTE is known. For details, see Tsuda, Jin and Okui (2024+).
+#' `unif_gen` computes uniform confidence bands of the MTE function given the parametric part of MTE is known. For details, see Tsuda, Jin and Okui (2024+).
 #'
 #' @param outcome_name The name of the outcome
 #' @param covariate_name The name of covariate

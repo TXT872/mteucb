@@ -42,5 +42,5 @@ vignette("uniform_con_gen") # Provides the Uniform Confidence Band for a MTE Fun
 
 ## References
 
--Tsuda, T, Jin, Y., & Okui, R. (2024+). Uniform Confidence Band for
-Marginal Treatment Effect Function. will be available on arXiv.
+- Tsuda, T, Jin, Y., & Okui, R. (2024+). Uniform Confidence Band for
+  Marginal Treatment Effect Function. will be available on arXiv.

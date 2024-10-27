@@ -1,5 +1,6 @@
 ---
 title: "p_hut_gen (under construction)"
+author: "Toshiki Tsuda (toshiki.tsuda@yale.edu), Yanchun Jin (chnjyc@gmail.com), Ryo Okui (okuiryo@e.u-tokyo.ac.jp)"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{p_hut_gen}
@@ -21,8 +22,8 @@ The **mteucb** provides four functions as below:
 
 -  `p_hut_gen()`: Estimation of  propensity score thourgh maximum likelihood estimation.
 -  `beta_hut_gen()`: Estimation of  finite parameters by partially linear estimation.
--  `p_hut_gen()`:
--  `p_hut_gen()`:
+-  `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known. 
+-  `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
 
 In this page, we introduce how to use `p_hut_gen()` for obtaining the estimated propensity score. 
 
@@ -131,3 +132,11 @@ head(RESULT_P_hut$P_hut)
 ```
 
 ## Note
+-  
+
+## Reference
+
+-  Tsuda, T, Jin, Y., & Okui, R. (2024+).
+Uniform Confidence Band for Marginal Treatment Effect Function.
+will be available on arXiv.
+

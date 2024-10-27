@@ -1,5 +1,6 @@
 ---
 title: "beta_gen (under construction)"
+author: "Toshiki Tsuda (toshiki.tsuda@yale.edu), Yanchun Jin (chnjyc@gmail.com), Ryo Okui (okuiryo@e.u-tokyo.ac.jp)"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{beta_gen}
@@ -15,6 +16,126 @@ knitr::opts_chunk$set(
 options(rmarkdown.html_vignette.check_title = FALSE) 
 ```
 
-```{r setup}
+## Functions
+
+The **mteucb** provides four functions as below:
+
+-  `p_hut_gen()`: Estimation of  propensity score thourgh maximum likelihood estimation.
+-  `beta_hut_gen()`: Estimation of  finite parameters by partially linear estimation.
+-  `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known. 
+-  `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
+
+In this page, we introduce how to use `beta_hut_gen()` for obtaining the finite dimensional parameters of MTE functions.
+
+#### Arguments
+
+-  `outcome_name`: The name of the outcome
+-  `covariate_name`: The name of covariate
+-  `instrument_name`: The name of instrument variables
+-  `treatment_name`: The name of a treatment variable
+-  `data`: data.frame to be used for the estimation of MTE
+-  `family`: The distribution used for the calculation of the propensity score.
+You can choose "probit" or "logit". The default choice is "probit".
+-  `trim`: To mitigate the effect of ill behavior of estimtaed propensity scores,
+we set those less than the value of trim or larger than (1-the value of trim) as the value of the value of trim  or (1-the value of trim).
+-  `intercept`: 'TRUE' or 'FLASE' option to decide whether you include an intercept
+for estimating the propensity score or not. The default choice is 'TRUE'.
+-   `se_type`:The sort of standard error sought. The options are "HC0", "HC1" (or "stata", the equivalent) , "HC2" (default), "HC3", or "classical".
+
+#### Returns
+`beta_gen()` returns a list that contains the following two elements:
+
+- `Beta`: Finite parameters of an MTE function estimated by partially linear estimation.
+
+- `SE`: The standard error of estimated parameters. 
+
+
+## Example
+
+First, we generate the data used for the estimation of MTE, icluding outcome, covariates, instruments, and tretament.
+
+```{r, eval = T, echo = T}
+# Load the package
 library(mteucb)
+library(MASS)
+
+# Generate artificial data
+#: The number of cross-sectional units
+# tau: The length of time series
+# continuous: Generate a continuous (resp. discrete) covariate if it is TRUE (resp. FALSE).
+set.seed(1)
+
+#Generate covariates and instruments with sample size 2000.
+SS<-2000
+X1<-rnorm(n=SS,mean=0,sd=1)
+X2<-rnorm(n=SS,mean=0,sd=1)
+X3<-rnorm(n=SS,mean=0,sd=1)
+X4<-rnorm(n=SS,mean=0,sd=1)
+Z1<-rnorm(n=SS,mean=0,sd=1)
+Z2<-rnorm(n=SS,mean=0,sd=1)
+Z3<-rnorm(n=SS,mean=0,sd=1)
+Z4<-rnorm(n=SS,mean=0,sd=1)
+
+#Generate unobserved heterogeneity and errors to generate outcome and treatment
+E0<-c(1,0.5,0.3)
+E1<-c(0.5,1,0.8)
+E2<-c(0.3,0.8,1)
+E<-cbind(E0,E1,E2)
+E4<-mvrnorm(n=SS,mu=c(0,0,0),Sigma=E)
+U0<-E4[,1]
+U1<-E4[,2]
+V<-E4[,3]
+Expl<-cbind(X1,X2,X3,X4)
+Instr<-cbind(X1,X2,X3,X4,Z1,Z2,Z3,Z4)
+PInstr<-cbind(Z1,Z2,Z3,Z4)
+
+#Define parameters.
+beta0<-c(0.5,0.1,-0.1,-0.5)
+beta1<-c(0.8,0.4,-0.4,-0.8)
+ganma0<-c(0.4,0.4,0.4,0.4,0.3,0.3,0.3,0.3)
+
+#Generate outcome and treatment
+D<-numeric(SS)
+for(i in 1:SS){
+  if ((ganma0 %*% (Instr[i,]))>V[i]){
+    D[i]=1}
+}
+Y<-numeric(SS)
+for(i in 1:SS){
+  Y[i]<-D[i]*((beta1%*%Expl[i,])+U1[i])+(1-D[i])*((beta0%*%Expl[i,])+U0[i])
+}
+demo=as.data.frame(cbind(Y,Expl,PInstr,D))
 ```
+
+We can check the generated variable by using `head()`.
+
+```{r, eval = T, echo = T}
+head(demo)
+```
+
+By using `beta_gen()`, we obtain finite parameters of a MTE function with standard error.
+```{r, eval = T, echo = T}
+RESULT_P_hut<-p_hut_gen(outcome_name="Y",
+                                 covariate_name=c("X1","X2","X3","X4"),
+                                 instrument_name=c("Z1","Z2","Z3","Z4"),
+                                 treatment_name= "D",
+                                 data=demo,
+                                 family="probit", 
+                                 trim=0.01, #
+                                 intercept=TRUE
+                                )
+head(RESULT_P_hut$Data)
+head(RESULT_P_hut$SampleSize)
+head(RESULT_P_hut$P_hut)
+
+
+```
+
+## Note
+-  
+
+## Reference
+
+-  Tsuda, T, Jin, Y., & Okui, R. (2024+).
+Uniform Confidence Band for Marginal Treatment Effect Function.
+will be available on arXiv.

@@ -1,5 +1,6 @@
 ---
 title: "unif_gen (under construction)"
+author: "Toshiki Tsuda (toshiki.tsuda@yale.edu), Yanchun Jin (chnjyc@gmail.com), Ryo Okui (okuiryo@e.u-tokyo.ac.jp)"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{unif_gen}

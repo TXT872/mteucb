@@ -64,14 +64,15 @@
 #'
 #'
 #' RESULT_Beta<-beta_gen(outcome_name="Y",
-#' covariate_name=c("X1","X2","X3","X4"),
-#' instrument_name=c("Z1","Z2","Z3","Z4"),
-#' treatment_name= "D",
-#' data=demo,
-#' family="probit",
-#' trim=0.01,
-#' intercept=TRUE,
-#' se_type="HC2")
+#'                       covariate_name=c("X1","X2","X3","X4"),
+#'                       instrument_name=c("Z1","Z2","Z3","Z4"),
+#'                       treatment_name= "D",
+#'                       data=demo,
+#'                       family="probit",
+#'                       trim=0.01,
+#'                       intercept=TRUE,
+#'                       se_type="HC2"
+#')
 #'}
 #'
 #'
