@@ -15,13 +15,13 @@
 #' @param u_eval The maximum value of evaluation points for the estimated MTE
 #' @param kernel The kernel function used in estimating the nonparametric part of MTE.
 #' You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). The default choice is 'gaussK'.
-#' @param covariate_value A covariate value to plot the estimate MTE.
-#' @param significance_level The significance level for the construction of uniform confidence band.
+#' @param covariate_value A covariate value to plot the estimate MTE
+#' @param significance_level The significance level for the construction of uniform confidence band
 #'
 #'
 #' @return A list that contains the following elements:
-#' \item{Estimation}{A data frame of the following results: \cr outcome, covariate, instrument variables, treatment and propensity score}
-#' \item{Plot}{A list that contains the ggplot elements for unifrom confidence band}
+#' \item{Estimation}{ A data frame of the following results: \cr outcome, covariate, instrument variables, treatment and propensity score}
+#' \item{Plot}{ A list that contains the ggplot elements for unifrom confidence band}
 #'
 #' @export
 #'
@@ -70,29 +70,30 @@
 #' covariate_value<-c(0,0,0,0)
 #'
 #' RESULT_P_hut<-p_hut_gen(outcome_name="Y",
-#'                                  covariate_name=c("X1","X2","X3","X4"),
-#'                                  instrument_name=c("Z1","Z2","Z3","Z4"),
-#'                                  treatment_name= "D",
-#'                                  data=demo,
-#'                                  family="probit",
-#'                                  trim=0.01,
-#'                                  intercept=TRUE
-#'                                 )
+#'                         covariate_name=c("X1","X2","X3","X4"),
+#'                         instrument_name=c("Z1","Z2","Z3","Z4"),
+#'                         treatment_name= "D",
+#'                         data=demo,
+#'                         family="probit",
+#'                         trim=0.01,
+#'                         intercept=TRUE
+#')
 #'
 #' RESULT_unif<-unif_gen(outcome_name="Y",
-#' covariate_name=c("X1","X2","X3","X4"),
-#' instrument_name=c("Z1","Z2","Z3","Z4"),
-#' treatment_name= "D",
-#' P_hut_name= "P_hut",
-#' bw=0.1,
-#' beta0=beta0,
-#' beta1=beta1,
-#' data=RESULT_P_hut$Data,
-#' l_eval=0.15,
-#' u_eval=0.85,
-#' kernel=locpol::gaussK,
-#' covariate_value=covariate_value,
-#' significance_level=0.05)
+#'                       covariate_name=c("X1","X2","X3","X4"),
+#'                       instrument_name=c("Z1","Z2","Z3","Z4"),
+#'                       treatment_name= "D",
+#'                       P_hut_name= "P_hut",
+#'                       bw=0.1,
+#'                       beta0=beta0,
+#'                       beta1=beta1,
+#'                       data=RESULT_P_hut$Data,
+#'                       l_eval=0.15,
+#'                       u_eval=0.85,
+#'                       kernel=locpol::gaussK,
+#'                       covariate_value=covariate_value,
+#'                       significance_level=0.05
+#')
 #'}
 #'
 #'
@@ -206,7 +207,7 @@ unif_gen<-function(outcome_name=outcome_name,
   plot<-plot+ggplot2::geom_point(ggplot2::aes(x = eval,
                                      y = BHC,color="Estimated MTE"),size = 0.8)
   plot<-plot+ggplot2::scale_color_manual(values = c("Estimated MTE" = "red"))
-  plot<-plot+ggplot2::labs(x = "P(Z)",y=outcome_name)+ggplot2::theme(axis.title.x =ggplot2::element_text(size=15,hjust = 0.5))+ggplot2::theme(legend.position = "none")
+  plot<-plot+ggplot2::labs(x = "P(Z)",y="MTE")+ggplot2::theme(axis.title.x =ggplot2::element_text(size=15,hjust = 0.5))+ggplot2::theme(legend.position = "none")
 
   Eval_U<-0.05*floor(u_eval/0.05)
   Eval_L<-0.05*ceiling(l_eval/0.05)

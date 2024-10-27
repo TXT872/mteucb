@@ -26,7 +26,7 @@ The **mteucb** provides four functions as below:
 -  `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known. 
 -  `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
 
-In this page, we introduce how to use `beta_hut_gen()` for obtaining the finite dimensional parameters of MTE functions.
+In this page, we introduce how to use `beta_hut_gen()` for obtaining finite dimensional parameters of an MTE function.
 
 #### Arguments
 
@@ -41,14 +41,14 @@ You can choose "probit" or "logit". The default choice is "probit".
 we set those less than the value of trim or larger than (1-the value of trim) as the value of the value of trim  or (1-the value of trim).
 -  `intercept`: 'TRUE' or 'FLASE' option to decide whether you include an intercept
 for estimating the propensity score or not. The default choice is 'TRUE'.
--   `se_type`:The sort of standard error sought. The options are "HC0", "HC1" (or "stata", the equivalent) , "HC2" (default), "HC3", or "classical".
+-  `se_type`: The sort of standard error sought. The options are "HC0", "HC1" (or "stata", the equivalent) , "HC2" (default), "HC3", or "classical".
 
 #### Returns
 `beta_gen()` returns a list that contains the following two elements:
 
-- `Beta`: Finite parameters of an MTE function estimated by partially linear estimation.
+- `Beta`: Finite parameters of an MTE function estimated by partially linear estimation
 
-- `SE`: The standard error of estimated parameters. 
+- `SE`: The standard error of estimated parameters
 
 
 ## Example
@@ -138,6 +138,8 @@ head(RESULT_Beta$SE)
 
 
 ## Reference
+
+- Carneiro and Lee (2009). Estimating distributions of potential outcomes using local instrumental variables with an application to changes in college enrollment and wage inequality. Journal of Econometrics, 2009, vol. 149, issue 2, 191-208
 
 -  Tsuda, T, Jin, Y., & Okui, R. (2024+).
 Uniform Confidence Band for Marginal Treatment Effect Function.

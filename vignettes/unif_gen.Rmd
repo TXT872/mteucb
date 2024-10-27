@@ -1,9 +1,9 @@
 ---
-title: "unif_gen (under construction)"
+title: "unif_gen"
 author: "Toshiki Tsuda (toshiki.tsuda@yale.edu), Yanchun Jin (chnjyc@gmail.com), Ryo Okui (okuiryo@e.u-tokyo.ac.jp)"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{unif_gen}
+  %\VignetteIndexEntry{beta_gen}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -11,11 +11,164 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.width = 7.5, 
+  fig.height = 5 
 )
+
 options(rmarkdown.html_vignette.check_title = FALSE) 
 ```
 
-```{r setup}
+## Functions
+
+The **mteucb** provides four functions as below:
+
+-  `p_hut_gen()`: Estimation of  propensity score thourgh maximum likelihood estimation.
+-  `beta_hut_gen()`: Estimation of  finite parameters by partially linear estimation.
+-  `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known. 
+-  `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
+
+In this page, we introduce how to use `unif_gen()` for obtaining a confidence band of an MTE function given data with estimated propensity score and estimated finite parameters.
+
+#### Arguments
+
+-  `outcome_name`: The name of the outcome
+-  `covariate_name`: The name of covariate
+-  `instrument_name`: The name of instrument variables
+-  `treatment_name`: The name of a treatment variable
+-  `P_hut_name`: The name of estimated propensity scores.
+-  `beta0`: A vector of parameters of a linear model for the outcome given an individual is not treated
+-  `beta1`: A vector of parameters of a linear model for the outcome given an individual is treated
+-  `data`: data.frame including propensity scores to be used for the estimation of MTE
+-  `bw`: 	The bandwidth used in estimating the nonparametric part of MTE
+-  `l_eval`: 	The minimum value of evaluation points for the estimated MTE
+-  `u_eval`: 	The maximum value of evaluation points for the estimated MTE
+-  `kernel`: The kernel function used in estimating the nonparametric part of MTE. You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). The default choice is 'gaussK'.
+-  `covariate_value`: A covariate value to plot the estimate MTE
+-  `significance_level`: The significance level for the construction of uniform confidence band
+
+#### Returns
+`unif_gen()` returns a list that contains the following two elements:
+
+- `Estimation`: A data frame of the following results: outcome, covariate, instrument variables, treatment and propensity score ranging from $0.05*\lceil \text{l_eval}/0.05\rceil$ to $0.05*\lfloor \text{u_eval}/0.05\rfloor$ with width $0.05$.
+
+- `Plot`: A list that contains the ggplot elements for unifrom confidence band
+
+
+## Example
+
+First, we generate the data used for the estimation of MTE, icluding outcome, covariates, instruments, and tretament.
+
+```{r, eval = T, echo = T}
+# Load the package
 library(mteucb)
+library(MASS)
+
+# Generate artificial data
+#: The number of cross-sectional units
+# tau: The length of time series
+# continuous: Generate a continuous (resp. discrete) covariate if it is TRUE (resp. FALSE).
+set.seed(1)
+
+#Generate covariates and instruments with sample size 2000.
+SS<-2000
+X1<-rnorm(n=SS,mean=0,sd=1)
+X2<-rnorm(n=SS,mean=0,sd=1)
+X3<-rnorm(n=SS,mean=0,sd=1)
+X4<-rnorm(n=SS,mean=0,sd=1)
+Z1<-rnorm(n=SS,mean=0,sd=1)
+Z2<-rnorm(n=SS,mean=0,sd=1)
+Z3<-rnorm(n=SS,mean=0,sd=1)
+Z4<-rnorm(n=SS,mean=0,sd=1)
+
+#Generate unobserved heterogeneity and errors to generate outcome and treatment
+E0<-c(1,0.5,0.3)
+E1<-c(0.5,1,0.8)
+E2<-c(0.3,0.8,1)
+E<-cbind(E0,E1,E2)
+E4<-mvrnorm(n=SS,mu=c(0,0,0),Sigma=E)
+U0<-E4[,1]
+U1<-E4[,2]
+V<-E4[,3]
+Expl<-cbind(X1,X2,X3,X4)
+Instr<-cbind(X1,X2,X3,X4,Z1,Z2,Z3,Z4)
+PInstr<-cbind(Z1,Z2,Z3,Z4)
+
+#Define parameters.
+beta0<-c(0.5,0.1,-0.1,-0.5)
+beta1<-c(0.8,0.4,-0.4,-0.8)
+ganma0<-c(0.4,0.4,0.4,0.4,0.3,0.3,0.3,0.3)
+
+#Generate outcome and treatment
+D<-numeric(SS)
+for(i in 1:SS){
+  if ((ganma0 %*% (Instr[i,]))>V[i]){
+    D[i]=1}
+}
+Y<-numeric(SS)
+for(i in 1:SS){
+  Y[i]<-D[i]*((beta1%*%Expl[i,])+U1[i])+(1-D[i])*((beta0%*%Expl[i,])+U0[i])
+}
+demo=as.data.frame(cbind(Y,Expl,PInstr,D))
 ```
+
+We can check the generated variable by using `head()`.
+
+```{r, eval = T, echo = T}
+head(demo)
+```
+
+To generate a confidence band, we set some parameters
+
+```{r, eval = T, echo = T}
+Supp_P_hut_U<-0.85
+Supp_P_hut_L<-0.15
+O_SS<-1000
+B2<-seq(Supp_P_hut_L,Supp_P_hut_U,length=O_SS)
+covariate_value<-c(0,0,0,0)
+```
+
+By using `unif_gen()`, we obtain a confidence band of a MTE function.
+```{r, eval = T, echo = T}
+RESULT_P_hut<-p_hut_gen(outcome_name="Y",
+                        covariate_name=c("X1","X2","X3","X4"),
+                        instrument_name=c("Z1","Z2","Z3","Z4"),
+                        treatment_name= "D",
+                        data=demo,
+                        family="probit",
+                        trim=0.01,
+                        intercept=TRUE
+)
+
+RESULT_unif<-unif_gen(outcome_name="Y",
+                      covariate_name=c("X1","X2","X3","X4"),
+                      instrument_name=c("Z1","Z2","Z3","Z4"),
+                      treatment_name= "D",
+                      P_hut_name= "P_hut",
+                      bw=0.1,
+                      beta0=beta0,
+                      beta1=beta1,
+                      data=RESULT_P_hut$Data,
+                      l_eval=0.15,
+                      u_eval=0.85,
+                      kernel=locpol::gaussK,
+                      covariate_value=covariate_value,
+                      significance_level=0.05
+)
+
+head(RESULT_unif$Estimation)
+
+RESULT_unif$Plot
+
+```
+
+## Note
+
+-
+
+
+## Reference
+
+-  Tsuda, T, Jin, Y., & Okui, R. (2024+).
+Uniform Confidence Band for Marginal Treatment Effect Function.
+will be available on arXiv.

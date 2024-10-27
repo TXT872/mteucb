@@ -47,14 +47,14 @@ unif_gen(
 \item{kernel}{The kernel function used in estimating the nonparametric part of MTE.
 You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). The default choice is 'gaussK'.}
 
-\item{covariate_value}{A covariate value to plot the estimate MTE.}
+\item{covariate_value}{A covariate value to plot the estimate MTE}
 
-\item{significance_level}{The significance level for the construction of uniform confidence band.}
+\item{significance_level}{The significance level for the construction of uniform confidence band}
 }
 \value{
 A list that contains the following elements:
-\item{Estimation}{A data frame of the following results: \cr outcome, covariate, instrument variables, treatment and propensity score}
-\item{Plot}{A list that contains the ggplot elements for unifrom confidence band}
+\item{Estimation}{ A data frame of the following results: \cr outcome, covariate, instrument variables, treatment and propensity score}
+\item{Plot}{ A list that contains the ggplot elements for unifrom confidence band}
 }
 \description{
 \code{unif_gen} computes uniform confidence bands of the MTE function given the parametric part of MTE is known. For details, see Tsuda, Jin and Okui (2024+).
@@ -103,29 +103,30 @@ B2<-seq(Supp_P_hut_L,Supp_P_hut_U,length=O_SS)
 covariate_value<-c(0,0,0,0)
 
 RESULT_P_hut<-p_hut_gen(outcome_name="Y",
-                                 covariate_name=c("X1","X2","X3","X4"),
-                                 instrument_name=c("Z1","Z2","Z3","Z4"),
-                                 treatment_name= "D",
-                                 data=demo,
-                                 family="probit",
-                                 trim=0.01,
-                                 intercept=TRUE
-                                )
+                        covariate_name=c("X1","X2","X3","X4"),
+                        instrument_name=c("Z1","Z2","Z3","Z4"),
+                        treatment_name= "D",
+                        data=demo,
+                        family="probit",
+                        trim=0.01,
+                        intercept=TRUE
+)
 
 RESULT_unif<-unif_gen(outcome_name="Y",
-covariate_name=c("X1","X2","X3","X4"),
-instrument_name=c("Z1","Z2","Z3","Z4"),
-treatment_name= "D",
-P_hut_name= "P_hut",
-bw=0.1,
-beta0=beta0,
-beta1=beta1,
-data=RESULT_P_hut$Data,
-l_eval=0.15,
-u_eval=0.85,
-kernel=locpol::gaussK,
-covariate_value=covariate_value,
-significance_level=0.05)
+                      covariate_name=c("X1","X2","X3","X4"),
+                      instrument_name=c("Z1","Z2","Z3","Z4"),
+                      treatment_name= "D",
+                      P_hut_name= "P_hut",
+                      bw=0.1,
+                      beta0=beta0,
+                      beta1=beta1,
+                      data=RESULT_P_hut$Data,
+                      l_eval=0.15,
+                      u_eval=0.85,
+                      kernel=locpol::gaussK,
+                      covariate_value=covariate_value,
+                      significance_level=0.05
+)
 }
 
 

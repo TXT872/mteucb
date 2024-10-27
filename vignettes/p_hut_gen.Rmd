@@ -25,7 +25,7 @@ The **mteucb** provides four functions as below:
 -  `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known. 
 -  `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
 
-In this page, we introduce how to use `p_hut_gen()` for obtaining the estimated propensity score. 
+In this page, we introduce how to use `p_hut_gen()` for obtaining estimated propensity scores. 
 
 #### Arguments
 
@@ -44,11 +44,11 @@ for estimating the propensity score or not. The default choice is 'TRUE'.
 #### Returns
 `p_hut_gen()` returns a list that contains the following three elements:
 
-- `Data`: A data frame equipped with the estimated propensity score. 
+- `Data`: A data frame equipped with the estimated propensity score 
 
-- `SampleSize`: The number of data used to estimate the propensity score. 
+- `SampleSize`: The number of data used to estimate the propensity score 
 
-- `P_hut`: A data frame that only includes the estimated propensity score.
+- `P_hut`: A data frame that only includes the estimated propensity score
 
 ## Example
 
