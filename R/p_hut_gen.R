@@ -26,7 +26,7 @@
 #' @export
 #'
 #' @importFrom dplyr %>%
-#' @importFrom MASS
+#' @importFrom MASS mvrnorm
 #'
 #' @examples
 #' \dontrun{

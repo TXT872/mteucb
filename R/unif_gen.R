@@ -25,7 +25,7 @@
 #'
 #' @export
 #'
-#' @importFrom MASS
+#' @importFrom MASS mvrnorm
 #'
 #' @examples
 #' \dontrun{
