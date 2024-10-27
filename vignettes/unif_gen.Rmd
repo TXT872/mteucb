@@ -3,7 +3,7 @@ title: "unif_gen"
 author: "Toshiki Tsuda (toshiki.tsuda@yale.edu), Yanchun Jin (chnjyc@gmail.com), Ryo Okui (okuiryo@e.u-tokyo.ac.jp)"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{beta_gen}
+  %\VignetteIndexEntry{unif_gen}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -157,7 +157,6 @@ RESULT_unif<-unif_gen(outcome_name="Y",
 )
 
 head(RESULT_unif$Estimation)
-
 RESULT_unif$Plot
 
 ```

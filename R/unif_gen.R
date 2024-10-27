@@ -25,6 +25,7 @@
 #'
 #' @export
 #'
+#' @importFrom MASS
 #'
 #' @examples
 #' \dontrun{

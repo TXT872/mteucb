@@ -59,7 +59,6 @@ First, we generate the data used for the estimation of MTE, icluding outcome, co
 # Load the package
 library(mteucb)
 library(MASS)
-
 # Generate artificial data
 #: The number of cross-sectional units
 # tau: The length of time series

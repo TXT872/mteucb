@@ -23,6 +23,7 @@
 #'
 #' @export
 #' @importFrom dplyr %>%
+#' @importFrom MASS
 #'
 #' @examples
 #' \dontrun{

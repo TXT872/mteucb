@@ -14,6 +14,7 @@ Imports:
     estimatr,
     ggplot2,
     locpol,
+    MASS,
     stats
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
