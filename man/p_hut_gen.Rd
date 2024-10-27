@@ -29,8 +29,8 @@ p_hut_gen(
 \item{family}{The distribution used for the calculation of the propensity score.
 You can choose "probit" or "logit". The default choice is "probit".}
 
-\item{trim, }{To mitigate the effect of ill behavior of estimtaed propensity scores,
-we set those less than the value of trim or larger than (1-the value of trim) as the value of the value of trim  or (1-the value of trim).}
+\item{trim}{To mitigate the effect of ill behavior of estimated propensity scores,
+we set those estimated values less than or larger than the value of trim  as the value of the value of trim. The default choice is "0.01".}
 
 \item{intercept}{'TRUE' or 'FLASE' option to decide whether you include an intercept
 for estimating the propensity score or not. The default choice is 'TRUE'.}

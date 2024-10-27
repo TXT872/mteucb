@@ -156,7 +156,7 @@ RESULT_unif<-unif_gen(outcome_name="Y",
                       significance_level=0.05
 )
 
-head(RESULT_unif$Estimation)
+RESULT_unif$Estimation
 RESULT_unif$Plot
 
 ```

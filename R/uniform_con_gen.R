@@ -10,9 +10,8 @@
 #' @param family
 #' The distribution used for the calculation of the propensity score.
 #' You can choose "probit" or "logit". The default choice is "probit".
-#' @param trim,
-#' To mitigate the effect of ill behavior of estimtaed propensity scores,
-#' we set those less than the value of trim or larger than (1-the value of trim) as the value of the value of trim  or (1-the value of trim).
+#' @param trim To mitigate the effect of ill behavior of estimated propensity scores,
+#' we set those estimated values less than or larger than the value of trim  as the value of the value of trim. The default choice is "0.01".
 #' @param intercept 'TRUE' or 'FLASE' option to decide whether you include an intercept
 #' for estimating the propensity score or not. The default choice is 'TRUE'.
 #' @param se_type The sort of standard error sought.
@@ -27,8 +26,7 @@
 #'
 #' @return A list that contains the following elements:
 #' \item{Data}{A data frame that contains the following elements: \cr outcome, covariate, instrument variables, treatment and propensity score}
-#' \item{Estimation}{A data frame of the following results: \cr outcome, covariate, instrument variables, treatment and propensity score}
-#' \item{Beta}{The estimated value of parametric parts of MTE}
+#' \item{Estimation}{A data frame of the following results: \cr evaluation point of MTE, estimated value of MTE, standard error of MTE, Lower bound of a confidence band , Upper bound of a confidence band}
 #' \item{SE}{A standard error of each coeffecient of parametric parts of MTE}
 #' \item{Plot}{A list that contains the ggplot elements for unifrom confidence band}
 #'
@@ -92,7 +90,8 @@
 #'                                  l_eval=0.15,
 #'                                  u_eval=0.85,
 #'                                  covariate_value=covariate_value,
-#'                                  significance_level=0.05)
+#'                                  significance_level=0.05
+#')
 #' }
 #'
 #'

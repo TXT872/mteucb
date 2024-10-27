@@ -27,7 +27,7 @@
     <a class="dropdown-item" href="../articles/beta_gen.html">beta_gen</a>
     <a class="dropdown-item" href="../articles/p_hut_gen.html">p_hut_gen</a>
     <a class="dropdown-item" href="../articles/unif_gen.html">unif_gen</a>
-    <a class="dropdown-item" href="../articles/uniform_con_gen.html">uniform_con_gen (under construction)</a>
+    <a class="dropdown-item" href="../articles/uniform_con_gen.html">uniform_con_gen</a>
   </div>
 </li>
 <li class="nav-item">
@@ -100,9 +100,9 @@
 You can choose "probit" or "logit". The default choice is "probit".</p></dd>
 
 
-<dt>trim, </dt>
-<dd><p>To mitigate the effect of ill behavior of estimtaed propensity scores,
-we set those less than the value of trim or larger than (1-the value of trim) as the value of the value of trim  or (1-the value of trim).</p></dd>
+<dt>trim</dt>
+<dd><p>To mitigate the effect of ill behavior of estimated propensity scores,
+we set those estimated values less than or larger than the value of trim  as the value of the value of trim. The default choice is "0.01".</p></dd>
 
 
 <dt>intercept</dt>
@@ -149,10 +149,7 @@ You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). Th
 <dd><p>A data frame that contains the following elements: <br> outcome, covariate, instrument variables, treatment and propensity score</p></dd>
 
 <dt>Estimation</dt>
-<dd><p>A data frame of the following results: <br> outcome, covariate, instrument variables, treatment and propensity score</p></dd>
-
-<dt>Beta</dt>
-<dd><p>The estimated value of parametric parts of MTE</p></dd>
+<dd><p>A data frame of the following results: <br> evaluation point of MTE, estimated value of MTE, standard error of MTE, Lower bound of a confidence band , Upper bound of a confidence band</p></dd>
 
 <dt>SE</dt>
 <dd><p>A standard error of each coeffecient of parametric parts of MTE</p></dd>
@@ -224,7 +221,8 @@ will be available on arXiv</p>
 <span class="r-in"><span>                                 l_eval<span class="op">=</span><span class="fl">0.15</span>,</span></span>
 <span class="r-in"><span>                                 u_eval<span class="op">=</span><span class="fl">0.85</span>,</span></span>
 <span class="r-in"><span>                                 covariate_value<span class="op">=</span><span class="va">covariate_value</span>,</span></span>
-<span class="r-in"><span>                                 significance_level<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                                 significance_level<span class="op">=</span><span class="fl">0.05</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>

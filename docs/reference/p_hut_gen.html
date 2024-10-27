@@ -27,7 +27,7 @@
     <a class="dropdown-item" href="../articles/beta_gen.html">beta_gen</a>
     <a class="dropdown-item" href="../articles/p_hut_gen.html">p_hut_gen</a>
     <a class="dropdown-item" href="../articles/unif_gen.html">unif_gen</a>
-    <a class="dropdown-item" href="../articles/uniform_con_gen.html">uniform_con_gen (under construction)</a>
+    <a class="dropdown-item" href="../articles/uniform_con_gen.html">uniform_con_gen</a>
   </div>
 </li>
 <li class="nav-item">
@@ -93,9 +93,9 @@
 You can choose "probit" or "logit". The default choice is "probit".</p></dd>
 
 
-<dt>trim, </dt>
-<dd><p>To mitigate the effect of ill behavior of estimtaed propensity scores,
-we set those less than the value of trim or larger than (1-the value of trim) as the value of the value of trim  or (1-the value of trim).</p></dd>
+<dt>trim</dt>
+<dd><p>To mitigate the effect of ill behavior of estimated propensity scores,
+we set those estimated values less than or larger than the value of trim  as the value of the value of trim. The default choice is "0.01".</p></dd>
 
 
 <dt>intercept</dt>

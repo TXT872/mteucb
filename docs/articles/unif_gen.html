@@ -44,7 +44,7 @@
     <a class="dropdown-item" href="../articles/beta_gen.html">beta_gen</a>
     <a class="dropdown-item" href="../articles/p_hut_gen.html">p_hut_gen</a>
     <a class="dropdown-item" href="../articles/unif_gen.html">unif_gen</a>
-    <a class="dropdown-item" href="../articles/uniform_con_gen.html">uniform_con_gen (under construction)</a>
+    <a class="dropdown-item" href="../articles/uniform_con_gen.html">uniform_con_gen</a>
   </div>
 </li>
 <li class="nav-item">
@@ -270,14 +270,23 @@ MTE function.</p>
 <span>                      significance_level<span class="op">=</span><span class="fl">0.05</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">RESULT_unif</span><span class="op">$</span><span class="va">Estimation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   P_hut          MTE        SE  UB of UCB LB of UCB</span></span>
-<span><span class="co">#&gt; 1  0.15 -0.517925332 0.4218355 -1.3770975 0.3412469</span></span>
-<span><span class="co">#&gt; 2  0.20 -0.642550942 0.4123960 -1.4824973 0.1973954</span></span>
-<span><span class="co">#&gt; 3  0.25 -0.613286387 0.4090528 -1.4464234 0.2198507</span></span>
-<span><span class="co">#&gt; 4  0.30 -0.419896721 0.4081820 -1.2512601 0.4114667</span></span>
-<span><span class="co">#&gt; 5  0.35 -0.177070478 0.4084703 -1.0090211 0.6548801</span></span>
-<span><span class="co">#&gt; 6  0.40  0.002566551 0.4089810 -0.8304243 0.8355574</span></span></code></pre></div>
+<span><span class="va">RESULT_unif</span><span class="op">$</span><span class="va">Estimation</span></span>
+<span><span class="co">#&gt;    P_hut          MTE        SE  LB of UCB UB of UCB</span></span>
+<span><span class="co">#&gt; 1   0.15 -0.517925332 0.4218355 -1.3770975 0.3412469</span></span>
+<span><span class="co">#&gt; 2   0.20 -0.642550942 0.4123960 -1.4824973 0.1973954</span></span>
+<span><span class="co">#&gt; 3   0.25 -0.613286387 0.4090528 -1.4464234 0.2198507</span></span>
+<span><span class="co">#&gt; 4   0.30 -0.419896721 0.4081820 -1.2512601 0.4114667</span></span>
+<span><span class="co">#&gt; 5   0.35 -0.177070478 0.4084703 -1.0090211 0.6548801</span></span>
+<span><span class="co">#&gt; 6   0.40  0.002566551 0.4089810 -0.8304243 0.8355574</span></span>
+<span><span class="co">#&gt; 7   0.45  0.075548265 0.4081995 -0.7558509 0.9069474</span></span>
+<span><span class="co">#&gt; 8   0.50  0.067243924 0.4043503 -0.7563154 0.8908032</span></span>
+<span><span class="co">#&gt; 9   0.55  0.033884403 0.3962759 -0.7732294 0.8409982</span></span>
+<span><span class="co">#&gt; 10  0.60  0.027043899 0.3844043 -0.7558904 0.8099782</span></span>
+<span><span class="co">#&gt; 11  0.65  0.070744690 0.3711239 -0.6851408 0.8266302</span></span>
+<span><span class="co">#&gt; 12  0.70  0.162877718 0.3598763 -0.5700992 0.8958547</span></span>
+<span><span class="co">#&gt; 13  0.75  0.301370639 0.3537934 -0.4192171 1.0219583</span></span>
+<span><span class="co">#&gt; 14  0.80  0.529850929 0.3553951 -0.1939989 1.2537008</span></span>
+<span><span class="co">#&gt; 15  0.85  0.996923089 0.3676701  0.2480722 1.7457740</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">RESULT_unif</span><span class="op">$</span><span class="va">Plot</span></span></code></pre></div>
 <p><img src="unif_gen_files/figure-html/unnamed-chunk-5-1.png" width="720"></p>

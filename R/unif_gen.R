@@ -20,7 +20,7 @@
 #'
 #'
 #' @return A list that contains the following elements:
-#' \item{Estimation}{ A data frame of the following results: \cr outcome, covariate, instrument variables, treatment and propensity score}
+#' \item{Estimation}{ A data frame of the following results: \cr evaluation point of MTE, estimated value of MTE, standard error of MTE, Lower bound of a confidence band , Upper bound of a confidence band}
 #' \item{Plot}{ A list that contains the ggplot elements for unifrom confidence band}
 #'
 #' @export
@@ -234,6 +234,6 @@ unif_gen<-function(outcome_name=outcome_name,
 
 
   Estimation<-as.data.frame(cbind(B2,B2_MTE, sqrt(sigma_hut_B2), BHC_L_B2,BHC_U_B2))
-  colnames(Estimation)<-c("P_hut","MTE", "SE", "UB of UCB","LB of UCB")
+  colnames(Estimation)<-c("P_hut","MTE", "SE", "LB of UCB", "UB of UCB")
   return(list(Estimation=Estimation, Plot=plot))
 }
