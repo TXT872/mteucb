@@ -1,5 +1,5 @@
 ---
-title: "beta_gen (under construction)"
+title: "beta_gen"
 author: "Toshiki Tsuda (toshiki.tsuda@yale.edu), Yanchun Jin (chnjyc@gmail.com), Ryo Okui (okuiryo@e.u-tokyo.ac.jp)"
 output: rmarkdown::html_vignette
 vignette: >
@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
 options(rmarkdown.html_vignette.check_title = FALSE) 
 ```
 
@@ -115,24 +116,26 @@ head(demo)
 
 By using `beta_gen()`, we obtain finite parameters of a MTE function with standard error.
 ```{r, eval = T, echo = T}
-RESULT_P_hut<-p_hut_gen(outcome_name="Y",
-                                 covariate_name=c("X1","X2","X3","X4"),
-                                 instrument_name=c("Z1","Z2","Z3","Z4"),
-                                 treatment_name= "D",
-                                 data=demo,
-                                 family="probit", 
-                                 trim=0.01, #
-                                 intercept=TRUE
-                                )
-head(RESULT_P_hut$Data)
-head(RESULT_P_hut$SampleSize)
-head(RESULT_P_hut$P_hut)
+RESULT_Beta<-beta_gen(outcome_name="Y",
+                      covariate_name=c("X1","X2","X3","X4"),
+                      instrument_name=c("Z1","Z2","Z3","Z4"),
+                      treatment_name= "D",
+                      data=demo,
+                      family="probit",
+                      trim=0.01,
+                      intercept=TRUE,
+                      se_type="HC2"
+)
 
+head(RESULT_Beta$Beta)
+head(RESULT_Beta$SE)
 
 ```
 
 ## Note
--  
+
+-
+
 
 ## Reference
 

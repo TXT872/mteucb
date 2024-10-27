@@ -1,5 +1,5 @@
 ---
-title: "p_hut_gen (under construction)"
+title: "p_hut_gen"
 author: "Toshiki Tsuda (toshiki.tsuda@yale.edu), Yanchun Jin (chnjyc@gmail.com), Ryo Okui (okuiryo@e.u-tokyo.ac.jp)"
 output: rmarkdown::html_vignette
 vignette: >
@@ -132,11 +132,13 @@ head(RESULT_P_hut$P_hut)
 ```
 
 ## Note
--  
+
+-
 
 ## Reference
 
 -  Tsuda, T, Jin, Y., & Okui, R. (2024+).
 Uniform Confidence Band for Marginal Treatment Effect Function.
 will be available on arXiv.
+
 
