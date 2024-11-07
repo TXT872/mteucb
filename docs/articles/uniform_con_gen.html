@@ -170,8 +170,13 @@ with width <span class="math inline">\(0.05\)</span>.</p></li>
 by partially linear estimation</p></li>
 <li><p><code>SE</code>: The standard error of estimated
 parameters</p></li>
-<li><p><code>Plot</code>: A list that contains the ggplot elements for
-uniform confidence band</p></li>
+</ul>
+<p>-<code>critical_value</code>: A critical value corresponding to the
+significance level chosen</p>
+<ul>
+<li>
+<code>Plot</code>: A list that contains the ggplot elements for
+uniform confidence band</li>
 </ul>
 </div>
 </div>
@@ -256,7 +261,7 @@ outcome, covariates, instruments, and tretament.</p>
 <span><span class="va">B2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="va">Supp_P_hut_L</span>,<span class="va">Supp_P_hut_U</span>,length<span class="op">=</span><span class="va">O_SS</span><span class="op">)</span></span>
 <span><span class="va">covariate_value</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <p>By using <code>unif_con_gen()</code>, we obtain a confidence band of
-a MTE function.</p>
+a MTE function with some other information.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Final_Result_Ex</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/uniform_con_gen.html">uniform_con_gen</a></span><span class="op">(</span>outcome_name<span class="op">=</span><span class="st">"Y"</span>,</span>
 <span>                                 covariate_name<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X1"</span>,<span class="st">"X2"</span>,<span class="st">"X3"</span>,<span class="st">"X4"</span><span class="op">)</span>,</span>
@@ -322,6 +327,9 @@ a MTE function.</p>
 <span><span class="co">#&gt; X3 0.04734397 0.04960917</span></span>
 <span><span class="co">#&gt; X4 0.04492039 0.04554856</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Final_Result_Ex</span><span class="op">$</span><span class="va">critical_value</span></span>
+<span><span class="co">#&gt; [1] 2.819258</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Final_Result_Ex</span><span class="op">$</span><span class="va">Plot</span></span></code></pre></div>
 <p><img src="uniform_con_gen_files/figure-html/unnamed-chunk-5-1.png" width="720"></p>
 </div>

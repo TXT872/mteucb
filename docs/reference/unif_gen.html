@@ -128,7 +128,7 @@ You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). Th
 
 
 <dt>significance_level</dt>
-<dd><p>The significance level for the construction of uniform confidence band</p></dd>
+<dd><p>The significance level for the construction of uniform confidence band. The default is 0.05.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -138,6 +138,9 @@ You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). Th
 <p>A list that contains the following elements:</p>
 <dl><dt>Estimation</dt>
 <dd><p>A data frame of the following results: <br> evaluation point of MTE, estimated value of MTE, standard error of MTE, Lower bound of a confidence band , Upper bound of a confidence band</p></dd>
+
+<dt>critical_value</dt>
+<dd><p>A critical value corresponding to the siginificance level chosen</p></dd>
 
 <dt>Plot</dt>
 <dd><p>A list that contains the ggplot elements for unifrom confidence band</p></dd>

@@ -142,7 +142,7 @@ and ‘EapK’ (Epanechinikov kernel). The default choice is ‘gaussK’.</li>
 MTE</li>
 <li>
 <code>significance_level</code>: The significance level for the
-construction of uniform confidence band</li>
+construction of uniform confidence band. The default is 0.05.</li>
 </ul>
 </div>
 <div class="section level4">
@@ -151,13 +151,19 @@ construction of uniform confidence band</li>
 <p><code><a href="../reference/unif_gen.html">unif_gen()</a></code> returns a list that contains the following
 two elements:</p>
 <ul>
-<li><p><code>Estimation</code>: A data frame of the following results:
+<li>
+<code>Estimation</code>: A data frame of the following results:
 outcome, covariate, instrument variables, treatment and propensity score
 ranging from <span class="math inline">\(0.05*\lceil
 \text{l_eval}/0.05\rceil\)</span> to <span class="math inline">\(0.05*\lfloor \text{u_eval}/0.05\rfloor\)</span>
-with width <span class="math inline">\(0.05\)</span>.</p></li>
-<li><p><code>Plot</code>: A list that contains the ggplot elements for
-unifrom confidence band</p></li>
+with width <span class="math inline">\(0.05\)</span>.</li>
+</ul>
+<p>-<code>critical_value</code>: A critical value corresponding to the
+significance level chosen</p>
+<ul>
+<li>
+<code>Plot</code>: A list that contains the ggplot elements for
+unifrom confidence band</li>
 </ul>
 </div>
 </div>
@@ -242,7 +248,7 @@ outcome, covariates, instruments, and tretament.</p>
 <span><span class="va">B2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="va">Supp_P_hut_L</span>,<span class="va">Supp_P_hut_U</span>,length<span class="op">=</span><span class="va">O_SS</span><span class="op">)</span></span>
 <span><span class="va">covariate_value</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <p>By using <code><a href="../reference/unif_gen.html">unif_gen()</a></code>, we obtain a confidence band of a
-MTE function.</p>
+MTE function with some other information.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">RESULT_P_hut</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/p_hut_gen.html">p_hut_gen</a></span><span class="op">(</span>outcome_name<span class="op">=</span><span class="st">"Y"</span>,</span>
 <span>                        covariate_name<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X1"</span>,<span class="st">"X2"</span>,<span class="st">"X3"</span>,<span class="st">"X4"</span><span class="op">)</span>,</span>
@@ -288,6 +294,9 @@ MTE function.</p>
 <span><span class="co">#&gt; 14  0.80  0.529850929 0.3553951 -0.1939989 1.2537008</span></span>
 <span><span class="co">#&gt; 15  0.85  0.996923089 0.3676701  0.2480722 1.7457740</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">RESULT_unif</span><span class="op">$</span><span class="va">critical_value</span></span>
+<span><span class="co">#&gt; [1] 2.819258</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">RESULT_unif</span><span class="op">$</span><span class="va">Plot</span></span></code></pre></div>
 <p><img src="unif_gen_files/figure-html/unnamed-chunk-5-1.png" width="720"></p>
 </div>

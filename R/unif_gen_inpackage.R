@@ -120,5 +120,5 @@ unif_gen_inpackage<-function(outcome_name=outcome_name,
 
   Estimation<-as.data.frame(cbind(B2,B2_MTE, sqrt(sigma_hut_B2), BHC_L_B2,BHC_U_B2))
   colnames(Estimation)<-c("P_hut","MTE", "SE", "LB of UCB", "UB of UCB")
-  return(list(Estimation=Estimation, Plot=plot))
+  return(list(Estimation=Estimation, critical_value=critical_value, Plot=plot))
   }

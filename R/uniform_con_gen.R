@@ -28,6 +28,7 @@
 #' \item{Data}{A data frame that contains the following elements: \cr outcome, covariate, instrument variables, treatment and propensity score}
 #' \item{Estimation}{A data frame of the following results: \cr evaluation point of MTE, estimated value of MTE, standard error of MTE, Lower bound of a confidence band , Upper bound of a confidence band}
 #' \item{SE}{A standard error of each coeffecient of parametric parts of MTE}
+#' \item{critical_value}{ A critical value corresponding to the siginificance level chosen}
 #' \item{Plot}{A list that contains the ggplot elements for unifrom confidence band}
 #'
 #' @export
@@ -233,6 +234,7 @@ uniform_con_gen<-function(outcome_name=outcome_name,
   Dataframe<-Dataframe[,c(outcome_List,covariate_List,instrument_List,treatment_List,"P_hut")]
 
   Estimation<-Estimation_Result$Estimation
+  critical_value<-Estimation_Result$critical_value
   Plot<-Estimation_Result$Plot
-  return(list(Data=Dataframe, Estimation=Estimation, Beta=Beta$Beta, SE=Beta$SE, Plot=Plot))
+  return(list(Data=Dataframe, Estimation=Estimation, Beta=Beta$Beta, SE=Beta$SE, critical_value=critical_value, Plot=Plot))
 }

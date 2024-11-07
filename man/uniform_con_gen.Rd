@@ -63,6 +63,7 @@ A list that contains the following elements:
 \item{Data}{A data frame that contains the following elements: \cr outcome, covariate, instrument variables, treatment and propensity score}
 \item{Estimation}{A data frame of the following results: \cr evaluation point of MTE, estimated value of MTE, standard error of MTE, Lower bound of a confidence band , Upper bound of a confidence band}
 \item{SE}{A standard error of each coeffecient of parametric parts of MTE}
+\item{critical_value}{ A critical value corresponding to the siginificance level chosen}
 \item{Plot}{A list that contains the ggplot elements for unifrom confidence band}
 }
 \description{

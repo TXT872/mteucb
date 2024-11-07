@@ -49,11 +49,12 @@ You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). Th
 
 \item{covariate_value}{A covariate value to plot the estimate MTE}
 
-\item{significance_level}{The significance level for the construction of uniform confidence band}
+\item{significance_level}{The significance level for the construction of uniform confidence band. The default is 0.05.}
 }
 \value{
 A list that contains the following elements:
 \item{Estimation}{ A data frame of the following results: \cr evaluation point of MTE, estimated value of MTE, standard error of MTE, Lower bound of a confidence band , Upper bound of a confidence band}
+\item{critical_value}{ A critical value corresponding to the siginificance level chosen}
 \item{Plot}{ A list that contains the ggplot elements for unifrom confidence band}
 }
 \description{

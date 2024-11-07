@@ -45,12 +45,14 @@ In this page, we introduce how to use `unif_gen()` for obtaining a confidence ba
 -  `u_eval`: 	The maximum value of evaluation points for the estimated MTE
 -  `kernel`: The kernel function used in estimating the nonparametric part of MTE. You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). The default choice is 'gaussK'.
 -  `covariate_value`: A covariate value to plot the estimate MTE
--  `significance_level`: The significance level for the construction of uniform confidence band
+-  `significance_level`: The significance level for the construction of uniform confidence band. The default is 0.05.
 
 #### Returns
 `unif_gen()` returns a list that contains the following two elements:
 
 - `Estimation`: A data frame of the following results: outcome, covariate, instrument variables, treatment and propensity score ranging from $0.05*\lceil \text{l_eval}/0.05\rceil$ to $0.05*\lfloor \text{u_eval}/0.05\rfloor$ with width $0.05$.
+
+- `critical_value`: A critical value corresponding to the significance level chosen
 
 - `Plot`: A list that contains the ggplot elements for unifrom confidence band
 
@@ -128,7 +130,7 @@ B2<-seq(Supp_P_hut_L,Supp_P_hut_U,length=O_SS)
 covariate_value<-c(0,0,0,0)
 ```
 
-By using `unif_gen()`, we obtain a confidence band of a MTE function.
+By using `unif_gen()`, we obtain a confidence band of a MTE function with some other information.
 ```{r, eval = T, echo = T}
 RESULT_P_hut<-p_hut_gen(outcome_name="Y",
                         covariate_name=c("X1","X2","X3","X4"),
@@ -157,6 +159,7 @@ RESULT_unif<-unif_gen(outcome_name="Y",
 )
 
 RESULT_unif$Estimation
+RESULT_unif$critical_value
 RESULT_unif$Plot
 
 ```

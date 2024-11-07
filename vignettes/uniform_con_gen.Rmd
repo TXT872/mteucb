@@ -60,6 +60,8 @@ In this page, we introduce how to use `unif_con_gen()` for obtaining a confidenc
 
 - `SE`: The standard error of estimated parameters
 
+- `critical_value`: A critical value corresponding to the significance level chosen
+
 - `Plot`: A list that contains the ggplot elements for uniform confidence band
 
 
@@ -136,7 +138,7 @@ B2<-seq(Supp_P_hut_L,Supp_P_hut_U,length=O_SS)
 covariate_value<-c(0,0,0,0)
 ```
 
-By using `unif_con_gen()`, we obtain a confidence band of a MTE function.
+By using `unif_con_gen()`, we obtain a confidence band of a MTE function with some other information.
 ```{r, eval = T, echo = T}
 Final_Result_Ex<-uniform_con_gen(outcome_name="Y",
                                  covariate_name=c("X1","X2","X3","X4"),
@@ -158,6 +160,7 @@ head(Final_Result_Ex$Data)
 Final_Result_Ex$Estimation
 Final_Result_Ex$Beta
 Final_Result_Ex$SE
+Final_Result_Ex$critical_value
 Final_Result_Ex$Plot
 
 ```

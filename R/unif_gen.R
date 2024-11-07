@@ -16,11 +16,12 @@
 #' @param kernel The kernel function used in estimating the nonparametric part of MTE.
 #' You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). The default choice is 'gaussK'.
 #' @param covariate_value A covariate value to plot the estimate MTE
-#' @param significance_level The significance level for the construction of uniform confidence band
+#' @param significance_level The significance level for the construction of uniform confidence band. The default is 0.05.
 #'
 #'
 #' @return A list that contains the following elements:
 #' \item{Estimation}{ A data frame of the following results: \cr evaluation point of MTE, estimated value of MTE, standard error of MTE, Lower bound of a confidence band , Upper bound of a confidence band}
+#' \item{critical_value}{ A critical value corresponding to the siginificance level chosen}
 #' \item{Plot}{ A list that contains the ggplot elements for unifrom confidence band}
 #'
 #' @export
@@ -226,7 +227,6 @@ unif_gen<-function(outcome_name=outcome_name,
   }
 
 
-
   BHC_L_B2<-numeric(length(B2))
   BHC_L_B2<-B2_MTE-critical_value*sqrt(sigma_hut_B2/(SS*((bw)^3)))
   BHC_U_B2<-numeric(length(eval))
@@ -235,5 +235,5 @@ unif_gen<-function(outcome_name=outcome_name,
 
   Estimation<-as.data.frame(cbind(B2,B2_MTE, sqrt(sigma_hut_B2), BHC_L_B2,BHC_U_B2))
   colnames(Estimation)<-c("P_hut","MTE", "SE", "LB of UCB", "UB of UCB")
-  return(list(Estimation=Estimation, Plot=plot))
+  return(list(Estimation=Estimation, critical_value=critical_value, Plot=plot))
 }
