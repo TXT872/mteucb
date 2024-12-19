@@ -13,8 +13,6 @@
 #' @param bw The bandwidth used in estimating the nonparametric part of MTE
 #' @param l_eval The minimum value of evaluation points for the estimated MTE
 #' @param u_eval The maximum value of evaluation points for the estimated MTE
-#' @param kernel The kernel function used in estimating the nonparametric part of MTE.
-#' You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). The default choice is 'gaussK'.
 #' @param covariate_value A covariate value to plot the estimate MTE
 #' @param significance_level The significance level for the construction of uniform confidence band. The default is 0.05.
 #'
@@ -92,7 +90,6 @@
 #'                       data=RESULT_P_hut$Data,
 #'                       l_eval=0.15,
 #'                       u_eval=0.85,
-#'                       kernel=locpol::gaussK,
 #'                       covariate_value=covariate_value,
 #'                       significance_level=0.05
 #')
@@ -115,7 +112,6 @@ unif_gen<-function(outcome_name=outcome_name,
                    bw=bw,
                    l_eval=l_eval,
                    u_eval=u_eval,
-                   kernel=locpol::gaussK,
                    covariate_value=covariate_value,
                    significance_level=0.05){
   if((l_eval+0.05)> u_eval){
@@ -173,13 +169,13 @@ unif_gen<-function(outcome_name=outcome_name,
   O_SS<-1000
   eval<-seq(Supp_P_hut_L,Supp_P_hut_U,length=O_SS)
 
-  Density_c<-locpol::PRDenEstC(LAST_Dcf$P_hut,bw=bw, kernel=kernel, xeval=eval)
-  DDc<-locpol::locpol(Ytildac~P_hut,data=LAST_Dcf,bw=bw,kernel =kernel, xeval=eval,deg=2)
+  Density_c<-locpol::PRDenEstC(LAST_Dcf$P_hut,bw=bw, kernel=locpol::gaussK, xeval=eval)
+  DDc<-locpol::locpol(Ytildac~P_hut,data=LAST_Dcf,bw=bw,kernel =locpol::gaussK, xeval=eval,deg=2)
   BHC<-DDc$lpFit[,3]+rep(ac,length(eval))
 
   sigma_hut<-numeric(length(eval))
   for(l in 1:length(eval)){
-    b<-(1/(4*sqrt(pi)))*((1/Density_c[l,2]))*((1/locpol::mu2K(kernel))^2)*DDc$lpFit[l,6]
+    b<-(1/(4*sqrt(pi)))*((1/Density_c[l,2]))*((1/locpol::mu2K(locpol::gaussK))^2)*DDc$lpFit[l,6]
     sigma_hut[l]<-b
   }
 
@@ -216,13 +212,13 @@ unif_gen<-function(outcome_name=outcome_name,
   B2<-seq(Eval_L,Eval_U,by=0.05)
 
 
-  Density_B2<-locpol::PRDenEstC(LAST_Dcf$P_hut,bw=bw, kernel=kernel, xeval=B2)
-  DDB2<-locpol::locpol(Ytildac~P_hut,data=LAST_Dcf,bw=bw,kernel =kernel, xeval=B2,deg=2)
+  Density_B2<-locpol::PRDenEstC(LAST_Dcf$P_hut,bw=bw, kernel=locpol::gaussK, xeval=B2)
+  DDB2<-locpol::locpol(Ytildac~P_hut,data=LAST_Dcf,bw=bw,kernel =locpol::gaussK, xeval=B2,deg=2)
   B2_MTE<-DDB2$lpFit[,3]+rep(ac,length(B2))
 
   sigma_hut_B2<-numeric(length(B2))
   for(l in 1:length(B2)){
-    b<-(1/(4*sqrt(pi)))*((1/Density_B2[l,2]))*((1/locpol::mu2K(kernel))^2)*DDB2$lpFit[l,6]
+    b<-(1/(4*sqrt(pi)))*((1/Density_B2[l,2]))*((1/locpol::mu2K(locpol::gaussK))^2)*DDB2$lpFit[l,6]
     sigma_hut_B2[l]<-b
   }
 

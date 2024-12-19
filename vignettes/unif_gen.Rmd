@@ -43,7 +43,6 @@ In this page, we introduce how to use `unif_gen()` for obtaining a confidence ba
 -  `bw`: 	The bandwidth used in estimating the nonparametric part of MTE
 -  `l_eval`: 	The minimum value of evaluation points for the estimated MTE
 -  `u_eval`: 	The maximum value of evaluation points for the estimated MTE
--  `kernel`: The kernel function used in estimating the nonparametric part of MTE. You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). The default choice is 'gaussK'.
 -  `covariate_value`: A covariate value to plot the estimate MTE
 -  `significance_level`: The significance level for the construction of uniform confidence band. The default is 0.05.
 
@@ -153,7 +152,6 @@ RESULT_unif<-unif_gen(outcome_name="Y",
                       data=RESULT_P_hut$Data,
                       l_eval=0.15,
                       u_eval=0.85,
-                      kernel=locpol::gaussK,
                       covariate_value=covariate_value,
                       significance_level=0.05
 )

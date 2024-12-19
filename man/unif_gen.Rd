@@ -16,7 +16,6 @@ unif_gen(
   bw = bw,
   l_eval = l_eval,
   u_eval = u_eval,
-  kernel = locpol::gaussK,
   covariate_value = covariate_value,
   significance_level = 0.05
 )
@@ -43,9 +42,6 @@ unif_gen(
 \item{l_eval}{The minimum value of evaluation points for the estimated MTE}
 
 \item{u_eval}{The maximum value of evaluation points for the estimated MTE}
-
-\item{kernel}{The kernel function used in estimating the nonparametric part of MTE.
-You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). The default choice is 'gaussK'.}
 
 \item{covariate_value}{A covariate value to plot the estimate MTE}
 
@@ -124,7 +120,6 @@ RESULT_unif<-unif_gen(outcome_name="Y",
                       data=RESULT_P_hut$Data,
                       l_eval=0.15,
                       u_eval=0.85,
-                      kernel=locpol::gaussK,
                       covariate_value=covariate_value,
                       significance_level=0.05
 )

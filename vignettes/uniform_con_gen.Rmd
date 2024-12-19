@@ -44,7 +44,6 @@ In this page, we introduce how to use `unif_con_gen()` for obtaining a confidenc
 -  `bw`: 	The bandwidth used in estimating the nonparametric part of MTE
 -  `l_eval`: 	The minimum value of evaluation points for the estimated MTE
 -  `u_eval`: 	The maximum value of evaluation points for the estimated MTE
--  `kernel`: The kernel function used in estimating the nonparametric part of MTE. You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). The default choice is 'gaussK'.
 -  `covariate_value`: A covariate value to plot the estimate MTE
 -  `significance_level`: The significance level for the construction of uniform confidence band
 

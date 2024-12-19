@@ -66,7 +66,6 @@
 <span>  bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>  l_eval <span class="op">=</span> <span class="va">l_eval</span>,</span>
 <span>  u_eval <span class="op">=</span> <span class="va">u_eval</span>,</span>
-<span>  kernel <span class="op">=</span> <span class="fu">locpol</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/locpol/man/Kernels.html" class="external-link">gaussK</a></span>,</span>
 <span>  covariate_value <span class="op">=</span> <span class="va">covariate_value</span>,</span>
 <span>  significance_level <span class="op">=</span> <span class="fl">0.05</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -116,11 +115,6 @@
 
 <dt>u_eval</dt>
 <dd><p>The maximum value of evaluation points for the estimated MTE</p></dd>
-
-
-<dt>kernel</dt>
-<dd><p>The kernel function used in estimating the nonparametric part of MTE.
-You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). The default choice is 'gaussK'.</p></dd>
 
 
 <dt>covariate_value</dt>
@@ -218,7 +212,6 @@ will be available on arXiv</p>
 <span class="r-in"><span>                      data<span class="op">=</span><span class="va">RESULT_P_hut</span><span class="op">$</span><span class="va">Data</span>,</span></span>
 <span class="r-in"><span>                      l_eval<span class="op">=</span><span class="fl">0.15</span>,</span></span>
 <span class="r-in"><span>                      u_eval<span class="op">=</span><span class="fl">0.85</span>,</span></span>
-<span class="r-in"><span>                      kernel<span class="op">=</span><span class="fu">locpol</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/locpol/man/Kernels.html" class="external-link">gaussK</a></span>,</span></span>
 <span class="r-in"><span>                      covariate_value<span class="op">=</span><span class="va">covariate_value</span>,</span></span>
 <span class="r-in"><span>                      significance_level<span class="op">=</span><span class="fl">0.05</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>

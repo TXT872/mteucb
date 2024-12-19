@@ -17,7 +17,6 @@ uniform_con_gen(
   bw = bw,
   l_eval = l_eval,
   u_eval = u_eval,
-  kernel = locpol::gaussK,
   covariate_value = covariate_value,
   significance_level = 0.05
 )
@@ -50,9 +49,6 @@ The options are "HC0", "HC1" (or "stata", the equivalent) , "HC2" (default), "HC
 \item{l_eval}{The minimum value of evaluation points for the estimated MTE}
 
 \item{u_eval}{The maximum value of evaluation points for the estimated MTE}
-
-\item{kernel}{The kernel function used in estimating the nonparametric part of MTE.
-You can choose 'gaussK' (gaussian kernel), and 'EapK' (Epanechinikov kernel). The default choice is 'gaussK'.}
 
 \item{covariate_value}{A covariate value to plot the estimate MTE.}
 

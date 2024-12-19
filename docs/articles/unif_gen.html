@@ -134,10 +134,6 @@ estimated MTE</li>
 <code>u_eval</code>: The maximum value of evaluation points for the
 estimated MTE</li>
 <li>
-<code>kernel</code>: The kernel function used in estimating the
-nonparametric part of MTE. You can choose ‘gaussK’ (gaussian kernel),
-and ‘EapK’ (Epanechinikov kernel). The default choice is ‘gaussK’.</li>
-<li>
 <code>covariate_value</code>: A covariate value to plot the estimate
 MTE</li>
 <li>
@@ -151,19 +147,15 @@ construction of uniform confidence band. The default is 0.05.</li>
 <p><code><a href="../reference/unif_gen.html">unif_gen()</a></code> returns a list that contains the following
 two elements:</p>
 <ul>
-<li>
-<code>Estimation</code>: A data frame of the following results:
+<li><p><code>Estimation</code>: A data frame of the following results:
 outcome, covariate, instrument variables, treatment and propensity score
 ranging from <span class="math inline">\(0.05*\lceil
 \text{l_eval}/0.05\rceil\)</span> to <span class="math inline">\(0.05*\lfloor \text{u_eval}/0.05\rfloor\)</span>
-with width <span class="math inline">\(0.05\)</span>.</li>
-</ul>
-<p>-<code>critical_value</code>: A critical value corresponding to the
-significance level chosen</p>
-<ul>
-<li>
-<code>Plot</code>: A list that contains the ggplot elements for
-unifrom confidence band</li>
+with width <span class="math inline">\(0.05\)</span>.</p></li>
+<li><p><code>critical_value</code>: A critical value corresponding to
+the significance level chosen</p></li>
+<li><p><code>Plot</code>: A list that contains the ggplot elements for
+unifrom confidence band</p></li>
 </ul>
 </div>
 </div>
@@ -271,7 +263,6 @@ MTE function with some other information.</p>
 <span>                      data<span class="op">=</span><span class="va">RESULT_P_hut</span><span class="op">$</span><span class="va">Data</span>,</span>
 <span>                      l_eval<span class="op">=</span><span class="fl">0.15</span>,</span>
 <span>                      u_eval<span class="op">=</span><span class="fl">0.85</span>,</span>
-<span>                      kernel<span class="op">=</span><span class="fu">locpol</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/locpol/man/Kernels.html" class="external-link">gaussK</a></span>,</span>
 <span>                      covariate_value<span class="op">=</span><span class="va">covariate_value</span>,</span>
 <span>                      significance_level<span class="op">=</span><span class="fl">0.05</span></span>
 <span><span class="op">)</span></span>
