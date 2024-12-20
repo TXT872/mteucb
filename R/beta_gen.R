@@ -3,7 +3,7 @@
 #' `bet_gen` estimates a parametric part of a MTE function through the estimation method invented by Carneiro and Lee (2009). For details, see Carneiro and Lee (2009).
 #'
 #' @param outcome_name The name of the outcome
-#' @param covariate_name The name of covariate
+#' @param covariate_name The name of covariates
 #' @param instrument_name The name of instrument variables
 #' @param treatment_name The name of a treatment variable
 #' @param data data.frame to be used for the estimation of MTE.

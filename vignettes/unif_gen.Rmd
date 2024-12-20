@@ -23,38 +23,38 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 
 The **mteucb** provides four functions as below:
 
--  `p_hut_gen()`: Estimation of  propensity score thourgh maximum likelihood estimation.
--  `beta_hut_gen()`: Estimation of  finite parameters by partially linear estimation.
--  `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known. 
--  `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
+-   `p_hut_gen()`: Estimation of propensity score thourgh maximum likelihood estimation.
+-   `beta_hut_gen()`: Estimation of finite parameters by partially linear estimation.
+-   `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known.
+-   `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
 
 In this page, we introduce how to use `unif_gen()` for obtaining a confidence band of an MTE function given data with estimated propensity score and estimated finite parameters.
 
 #### Arguments
 
--  `outcome_name`: The name of the outcome
--  `covariate_name`: The name of covariate
--  `instrument_name`: The name of instrument variables
--  `treatment_name`: The name of a treatment variable
--  `P_hut_name`: The name of estimated propensity scores.
--  `beta0`: A vector of parameters of a linear model for the outcome given an individual is not treated
--  `beta1`: A vector of parameters of a linear model for the outcome given an individual is treated
--  `data`: data.frame including propensity scores to be used for the estimation of MTE
--  `bw`: 	The bandwidth used in estimating the nonparametric part of MTE
--  `l_eval`: 	The minimum value of evaluation points for the estimated MTE
--  `u_eval`: 	The maximum value of evaluation points for the estimated MTE
--  `covariate_value`: A covariate value to plot the estimate MTE
--  `significance_level`: The significance level for the construction of uniform confidence band. The default is 0.05.
+-   `outcome_name`: The name of the outcome
+-   `covariate_name`: The name of covariate
+-   `instrument_name`: The name of instrument variables
+-   `treatment_name`: The name of a treatment variable
+-   `P_hut_name`: The name of estimated propensity scores.
+-   `beta0`: A vector of parameters of a linear model for the outcome given an individual is not treated
+-   `beta1`: A vector of parameters of a linear model for the outcome given an individual is treated
+-   `data`: data.frame including propensity scores to be used for the estimation of MTE
+-   `bw`: The bandwidth used in estimating the nonparametric part of MTE
+-   `l_eval`: The minimum value of evaluation points for the estimated MTE
+-   `u_eval`: The maximum value of evaluation points for the estimated MTE
+-   `covariate_value`: A covariate value to plot the estimate MTE
+-   `significance_level`: The significance level for the construction of uniform confidence band. The default is 0.05.
 
 #### Returns
+
 `unif_gen()` returns a list that contains the following two elements:
 
-- `Estimation`: A data frame of the following results: outcome, covariate, instrument variables, treatment and propensity score ranging from $0.05*\lceil \text{l_eval}/0.05\rceil$ to $0.05*\lfloor \text{u_eval}/0.05\rfloor$ with width $0.05$.
+-   `Estimation`: A data frame of the following results: evaluation point of MTE, estimated value of MTE, standard error of MTE, Lower bound of a confidence band , Upper bound of a confidence band ranging from $0.05*\lceil \text{l_eval}/0.05\rceil$ to $0.05*\lfloor \text{u_eval}/0.05\rfloor$ with width $0.05$.
 
-- `critical_value`: A critical value corresponding to the significance level chosen
+-   `critical_value`: A critical value corresponding to the significance level chosen
 
-- `Plot`: A list that contains the ggplot elements for unifrom confidence band
-
+-   `Plot`: A list that contains the ggplot elements for unifrom confidence band
 
 ## Example
 
@@ -130,6 +130,7 @@ covariate_value<-c(0,0,0,0)
 ```
 
 By using `unif_gen()`, we obtain a confidence band of a MTE function with some other information.
+
 ```{r, eval = T, echo = T}
 RESULT_P_hut<-p_hut_gen(outcome_name="Y",
                         covariate_name=c("X1","X2","X3","X4"),
@@ -162,13 +163,6 @@ RESULT_unif$Plot
 
 ```
 
-## Note
-
--
-
-
 ## Reference
 
--  Tsuda, T, Jin, Y., & Okui, R. (2024+).
-Uniform Confidence Band for Marginal Treatment Effect Function.
-will be available on arXiv.
+-   Tsuda, T, Jin, Y., & Okui, R. (2024+). Uniform Confidence Band for Marginal Treatment Effect Function. will be available on arXiv.

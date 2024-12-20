@@ -21,35 +21,32 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 
 The **mteucb** provides four functions as below:
 
--  `p_hut_gen()`: Estimation of  propensity score thourgh maximum likelihood estimation.
--  `beta_hut_gen()`: Estimation of  finite parameters by partially linear estimation.
--  `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known. 
--  `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
+-   `p_hut_gen()`: Estimation of propensity score thourgh maximum likelihood estimation.
+-   `beta_hut_gen()`: Estimation of finite parameters by partially linear estimation.
+-   `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known.
+-   `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
 
 In this page, we introduce how to use `beta_hut_gen()` for obtaining finite dimensional parameters of an MTE function.
 
 #### Arguments
 
--  `outcome_name`: The name of the outcome
--  `covariate_name`: The name of covariate
--  `instrument_name`: The name of instrument variables
--  `treatment_name`: The name of a treatment variable
--  `data`: data.frame to be used for the estimation of MTE
--  `family`: The distribution used for the calculation of the propensity score.
-You can choose "probit" or "logit". The default choice is "probit".
--  `trim`: To mitigate the effect of ill behavior of estimtaed propensity scores,
-we set those less than the value of trim or larger than (1-the value of trim) as the value of the value of trim  or (1-the value of trim).
--  `intercept`: 'TRUE' or 'FLASE' option to decide whether you include an intercept
-for estimating the propensity score or not. The default choice is 'TRUE'.
--  `se_type`: The sort of standard error sought. The options are "HC0", "HC1" (or "stata", the equivalent) , "HC2" (default), "HC3", or "classical".
+-   `outcome_name`: The name of the outcome
+-   `covariate_name`: The name of covariates
+-   `instrument_name`: The name of instrument variables
+-   `treatment_name`: The name of a treatment variable
+-   `data`: data.frame to be used for the estimation of MTE
+-   `family`: The distribution used for the calculation of the propensity score. You can choose "probit" or "logit". The default choice is "probit".
+-   `trim`: To mitigate the effect of ill behavior of estimtaed propensity scores, we set those less than the value of trim or larger than (1-the value of trim) as the value of the value of trim or (1-the value of trim).
+-   `intercept`: 'TRUE' or 'FLASE' option to decide whether you include an intercept for estimating the propensity score or not. The default choice is 'TRUE'.
+-   `se_type`: The sort of standard error sought. The options are "HC0", "HC1" (or "stata", the equivalent) , "HC2" (default), "HC3", or "classical".
 
 #### Returns
+
 `beta_gen()` returns a list that contains the following two elements:
 
-- `Beta`: Finite parameters of an MTE function estimated by partially linear estimation
+-   `Beta`: Finite parameters of an MTE function estimated by partially linear estimation
 
-- `SE`: The standard error of estimated parameters
-
+-   `SE`: The standard error of estimated parameters
 
 ## Example
 
@@ -114,6 +111,7 @@ head(demo)
 ```
 
 By using `beta_gen()`, we obtain finite parameters of a MTE function with standard error.
+
 ```{r, eval = T, echo = T}
 RESULT_Beta<-beta_gen(outcome_name="Y",
                       covariate_name=c("X1","X2","X3","X4"),
@@ -133,13 +131,16 @@ head(RESULT_Beta$SE)
 
 ## Note
 
--
+-To estimate a semiparametric coefficient of MTE, we use a partial linear estimation based on an extension of separation method used in Carneiro and Lee (2009). For more details, see Tsuda, T, Jin, Y., & Okui, R. (2024+).
 
+-Our theory is agnostic about the choice of coefficient estimator. Other estimators such as those studied in Carneiro and Lee (2009) and Heckman, James J., Sergio Urzua, and Edward J. Vytlacil (2006), can be used if their convergence rates are sufficiently fast
+
+-For the estimation of conditional expectations, we use a function `locpol()` from R package **locpol**. Bandwidths for the estimation of conditional expectations are automatically calculated in `locpol()`.
 
 ## Reference
 
-- Carneiro and Lee (2009). Estimating distributions of potential outcomes using local instrumental variables with an application to changes in college enrollment and wage inequality. Journal of Econometrics, 2009, vol. 149, issue 2, 191-208
+-   Carneiro and Lee (2009). Estimating distributions of potential outcomes using local instrumental variables with an application to changes in college enrollment and wage inequality. Journal of Econometrics, 2009, vol. 149, issue 2, 191-208
 
--  Tsuda, T, Jin, Y., & Okui, R. (2024+).
-Uniform Confidence Band for Marginal Treatment Effect Function.
-will be available on arXiv.
+-   Heckman, James J., Sergio Urzua, and Edward J. Vytlacil (2006). “Understanding instru- mental variables in models with essential heterogeneity”. In: The Review of Economics and Statistics 88.3, pp. 389–432
+
+-   Tsuda, T, Jin, Y., & Okui, R. (2024+). Uniform Confidence Band for Marginal Treatment Effect Function. will be available on arXiv.

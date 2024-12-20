@@ -130,9 +130,6 @@ head(RESULT_P_hut$P_hut)
 
 ```
 
-## Note
-
--
 
 ## Reference
 

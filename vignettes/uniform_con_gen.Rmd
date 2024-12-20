@@ -23,46 +23,45 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 
 The **mteucb** provides four functions as below:
 
--  `p_hut_gen()`: Estimation of  propensity score thourgh maximum likelihood estimation.
--  `beta_hut_gen()`: Estimation of  finite parameters by partially linear estimation.
--  `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known. 
--  `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
+-   `p_hut_gen()`: Estimation of propensity score thourgh maximum likelihood estimation.
+-   `beta_hut_gen()`: Estimation of finite parameters by partially linear estimation.
+-   `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known.
+-   `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
 
 In this page, we introduce how to use `unif_con_gen()` for obtaining a confidence band of an MTE function.
 
 #### Arguments
 
--  `outcome_name`: The name of the outcome
--  `covariate_name`: The name of covariate
--  `instrument_name`: The name of instrument variables
--  `treatment_name`: The name of a treatment variable
--  `data`: data.frame to be used for the estimation of MTE
--  `familiy`: The distribution used for the calculation of the propensity score. You can choose "probit" or "logit". The default choice is "probit".
--  `trim`: To mitigate the effect of ill behavior of estimated propensity scores, we set those estimated values less than or larger than the value of trim  as the value of the value of trim. The default choice is "0.01".
--  `intercept`: 'TRUE' or 'FLASE' option to decide whether you include an intercept for estimating the propensity score or not. The default choice is 'TRUE'.
--  `se_type`: The sort of standard error sought. The options are "HC0", "HC1" (or "stata", the equivalent) , "HC2" (default), "HC3", or "classical".
--  `bw`: 	The bandwidth used in estimating the nonparametric part of MTE
--  `l_eval`: 	The minimum value of evaluation points for the estimated MTE
--  `u_eval`: 	The maximum value of evaluation points for the estimated MTE
--  `covariate_value`: A covariate value to plot the estimate MTE
--  `significance_level`: The significance level for the construction of uniform confidence band
+-   `outcome_name`: The name of the outcome
+-   `covariate_name`: The name of covariates
+-   `instrument_name`: The name of instrument variables
+-   `treatment_name`: The name of a treatment variable
+-   `data`: data.frame to be used for the estimation of MTE
+-   `familiy`: The distribution used for the calculation of the propensity score. You can choose "probit" or "logit". The default choice is "probit".
+-   `trim`: To mitigate the effect of ill behavior of estimated propensity scores, we set those estimated values less than or larger than the value of trim as the value of the value of trim. The default choice is "0.01".
+-   `intercept`: 'TRUE' or 'FLASE' option to decide whether you include an intercept for estimating the propensity score or not. The default choice is 'TRUE'.
+-   `se_type`: The sort of standard error sought. The options are "HC0", "HC1" (or "stata", the equivalent) , "HC2" (default), "HC3", or "classical".
+-   `bw`: The bandwidth used in estimating the nonparametric part of MTE
+-   `l_eval`: The minimum value of evaluation points for the estimated MTE
+-   `u_eval`: The maximum value of evaluation points for the estimated MTE
+-   `covariate_value`: A covariate value to plot the estimate MTE
+-   `significance_level`: The significance level for the construction of uniform confidence band
 
 #### Returns
+
 `uniform_con_gen()` returns a list that contains the following five elements:
 
-- `Data`: A data frame equipped with the estimated propensity score 
+-   `Data`: A data frame equipped with the estimated propensity score
 
-- `Estimation`: A data frame of the following results: evaluation point of MTE, estimated value of MTE, standard error of MTE, Lower bound of a confidence band , Upper bound of a confidence band ranging from $0.05*\lceil \text{l_eval}/0.05\rceil$ to $0.05*\lfloor \text{u_eval}/0.05\rfloor$ with width $0.05$.
+-   `Estimation`: A data frame of the following results: evaluation point of MTE, estimated value of MTE, standard error of MTE, Lower bound of a confidence band , Upper bound of a confidence band ranging from $0.05*\lceil \text{l_eval}/0.05\rceil$ to $0.05*\lfloor \text{u_eval}/0.05\rfloor$ with width $0.05$.
 
+-   `Beta`: Finite parameters of an MTE function estimated by partially linear estimation
 
-- `Beta`: Finite parameters of an MTE function estimated by partially linear estimation
+-   `SE`: The standard error of estimated parameters
 
-- `SE`: The standard error of estimated parameters
+-   `critical_value`: A critical value corresponding to the significance level chosen
 
-- `critical_value`: A critical value corresponding to the significance level chosen
-
-- `Plot`: A list that contains the ggplot elements for uniform confidence band
-
+-   `Plot`: A list that contains the ggplot elements for uniform confidence band
 
 ## Example
 
@@ -138,6 +137,7 @@ covariate_value<-c(0,0,0,0)
 ```
 
 By using `unif_con_gen()`, we obtain a confidence band of a MTE function with some other information.
+
 ```{r, eval = T, echo = T}
 Final_Result_Ex<-uniform_con_gen(outcome_name="Y",
                                  covariate_name=c("X1","X2","X3","X4"),
@@ -166,11 +166,8 @@ Final_Result_Ex$Plot
 
 ## Note
 
--
-
+-This package consists of  three packages, `p_hut_gen()`, `beta_gen()` and `unif_gen()`.
 
 ## Reference
 
--  Tsuda, T, Jin, Y., & Okui, R. (2024+).
-Uniform Confidence Band for Marginal Treatment Effect Function.
-will be available on arXiv.
+-   Tsuda, T, Jin, Y., & Okui, R. (2024+). Uniform Confidence Band for Marginal Treatment Effect Function. will be available on arXiv.
