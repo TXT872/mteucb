@@ -88,7 +88,7 @@ Okui (<a href="mailto:okuiryo@e.u-tokyo.ac.jp" class="email">okuiryo@e.u-tokyo.a
 <code><a href="../reference/p_hut_gen.html">p_hut_gen()</a></code>: Estimation of propensity score thourgh
 maximum likelihood estimation.</li>
 <li>
-<code>beta_hut_gen()</code>: Estimation of finite parameters by
+<code><a href="../reference/beta_gen.html">beta_gen()</a></code>: Estimation of finite parameters by
 partially linear estimation.</li>
 <li>
 <code><a href="../reference/unif_gen.html">unif_gen()</a></code>: Computation of uniform confidence bands for
@@ -148,7 +148,8 @@ construction of uniform confidence band. The default is 0.05.</li>
 two elements:</p>
 <ul>
 <li><p><code>Estimation</code>: A data frame of the following results:
-outcome, covariate, instrument variables, treatment and propensity score
+evaluation point of MTE, estimated value of MTE, standard error of MTE,
+Lower bound of a confidence band , Upper bound of a confidence band
 ranging from <span class="math inline">\(0.05*\lceil
 \text{l_eval}/0.05\rceil\)</span> to <span class="math inline">\(0.05*\lfloor \text{u_eval}/0.05\rfloor\)</span>
 with width <span class="math inline">\(0.05\)</span>.</p></li>
@@ -290,13 +291,6 @@ MTE function with some other information.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">RESULT_unif</span><span class="op">$</span><span class="va">Plot</span></span></code></pre></div>
 <p><img src="unif_gen_files/figure-html/unnamed-chunk-5-1.png" width="720"></p>
-</div>
-<div class="section level2">
-<h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a>
-</h2>
-<ul>
-<li>
-</ul>
 </div>
 <div class="section level2">
 <h2 id="reference">Reference<a class="anchor" aria-label="anchor" href="#reference"></a>

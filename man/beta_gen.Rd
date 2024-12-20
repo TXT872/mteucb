@@ -19,7 +19,7 @@ beta_gen(
 \arguments{
 \item{outcome_name}{The name of the outcome}
 
-\item{covariate_name}{The name of covariate}
+\item{covariate_name}{The name of covariates}
 
 \item{instrument_name}{The name of instrument variables}
 

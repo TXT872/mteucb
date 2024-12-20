@@ -22,7 +22,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 The **mteucb** provides four functions as below:
 
 -   `p_hut_gen()`: Estimation of propensity score thourgh maximum likelihood estimation.
--   `beta_hut_gen()`: Estimation of finite parameters by partially linear estimation.
+-   `beta_gen()`: Estimation of finite parameters by partially linear estimation.
 -   `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known.
 -   `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
 
@@ -141,6 +141,6 @@ head(RESULT_Beta$SE)
 
 -   Carneiro and Lee (2009). Estimating distributions of potential outcomes using local instrumental variables with an application to changes in college enrollment and wage inequality. Journal of Econometrics, 2009, vol. 149, issue 2, 191-208
 
--   Heckman, James J., Sergio Urzua, and Edward J. Vytlacil (2006). “Understanding instru- mental variables in models with essential heterogeneity”. In: The Review of Economics and Statistics 88.3, pp. 389–432
+-   Heckman, James J., Sergio Urzua, and Edward J. Vytlacil (2006). Understanding instru- mental variables in models with essential heterogeneity. The Review of Economics and Statistics 88.3, pp. 389–432
 
 -   Tsuda, T, Jin, Y., & Okui, R. (2024+). Uniform Confidence Band for Marginal Treatment Effect Function. will be available on arXiv.

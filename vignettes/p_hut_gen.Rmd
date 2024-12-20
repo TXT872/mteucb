@@ -21,7 +21,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 The **mteucb** provides four functions as below:
 
 -  `p_hut_gen()`: Estimation of  propensity score thourgh maximum likelihood estimation.
--  `beta_hut_gen()`: Estimation of  finite parameters by partially linear estimation.
+-  `beta_gen()`: Estimation of  finite parameters by partially linear estimation.
 -  `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known. 
 -  `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
 
