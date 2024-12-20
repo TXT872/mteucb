@@ -54,7 +54,7 @@ A list that contains the following elements:
 \item{Plot}{ A list that contains the ggplot elements for unifrom confidence band}
 }
 \description{
-\code{unif_gen} computes uniform confidence bands of the MTE function given the parametric part of MTE is known. For details, see Tsuda, Jin and Okui (2024+).
+\code{unif_gen} computes uniform confidence bands of a MTE function given the parametric part of MTE is known. For details, see Tsuda, Jin and Okui (2024+).
 }
 \examples{
 \dontrun{

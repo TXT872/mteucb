@@ -23,7 +23,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 
 The **mteucb** provides four functions as below:
 
--   `p_hut_gen()`: Estimation of propensity score thourgh maximum likelihood estimation.
+-   `p_hut_gen()`: Estimation of propensity score through maximum likelihood estimation.
 -   `beta_gen()`: Estimation of finite parameters by partially linear estimation.
 -   `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known.
 -   `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
@@ -33,7 +33,7 @@ In this page, we introduce how to use `unif_gen()` for obtaining a confidence ba
 #### Arguments
 
 -   `outcome_name`: The name of the outcome
--   `covariate_name`: The name of covariate
+-   `covariate_name`: The name of covariates
 -   `instrument_name`: The name of instrument variables
 -   `treatment_name`: The name of a treatment variable
 -   `P_hut_name`: The name of estimated propensity scores.
@@ -66,9 +66,6 @@ library(mteucb)
 library(MASS)
 
 # Generate artificial data
-#: The number of cross-sectional units
-# tau: The length of time series
-# continuous: Generate a continuous (resp. discrete) covariate if it is TRUE (resp. FALSE).
 set.seed(1)
 
 #Generate covariates and instruments with sample size 2000.
@@ -113,7 +110,7 @@ for(i in 1:SS){
 demo=as.data.frame(cbind(Y,Expl,PInstr,D))
 ```
 
-We can check the generated variable by using `head()`.
+We can check generated variables by using `head()`.
 
 ```{r, eval = T, echo = T}
 head(demo)

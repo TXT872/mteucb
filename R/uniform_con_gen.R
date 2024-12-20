@@ -3,7 +3,7 @@
 #' `uniform_con_gen` computes uniform confidence bands for a MTE function that is estimated by a semiparametric estimation method. For details, see Tsuda, Jin and Okui (2024+).
 #'
 #' @param outcome_name The name of the outcome
-#' @param covariate_name The name of covariate
+#' @param covariate_name The name of covariates
 #' @param instrument_name The name of instrument variables
 #' @param treatment_name The name of a treatment variable
 #' @param data data.frame to be used for the estimation of MTE
@@ -11,7 +11,7 @@
 #' The distribution used for the calculation of the propensity score.
 #' You can choose "probit" or "logit". The default choice is "probit".
 #' @param trim To mitigate the effect of ill behavior of estimated propensity scores,
-#' we set those estimated values less than or larger than the value of trim  as the value of the value of trim. The default choice is "0.01".
+#' we set values below the trim level to the trim level and values above (1 - trim) level to (1 - trim) level, respectively. The default choice is “0.01”.
 #' @param intercept 'TRUE' or 'FLASE' option to decide whether you include an intercept
 #' for estimating the propensity score or not. The default choice is 'TRUE'.
 #' @param se_type The sort of standard error sought.

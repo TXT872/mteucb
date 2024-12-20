@@ -1,6 +1,6 @@
 Package: mteucb
 Title: Marginal Treatment Effect
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
      c(person("Toshiki", "Tsuda", email="tsuda.toshiki.r73@kyoto-u.jp", role = c("aut", "cre", "cph")),
      person("Jin", "Yanchun", email="chnjyc@gmail.com", role = c("aut", "cph")),

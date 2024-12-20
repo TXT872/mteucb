@@ -24,7 +24,7 @@ uniform_con_gen(
 \arguments{
 \item{outcome_name}{The name of the outcome}
 
-\item{covariate_name}{The name of covariate}
+\item{covariate_name}{The name of covariates}
 
 \item{instrument_name}{The name of instrument variables}
 
@@ -36,7 +36,7 @@ uniform_con_gen(
 You can choose "probit" or "logit". The default choice is "probit".}
 
 \item{trim}{To mitigate the effect of ill behavior of estimated propensity scores,
-we set those estimated values less than or larger than the value of trim  as the value of the value of trim. The default choice is "0.01".}
+we set values below the trim level to the trim level and values above (1 - trim) level to (1 - trim) level, respectively. The default choice is “0.01”.}
 
 \item{intercept}{'TRUE' or 'FLASE' option to decide whether you include an intercept
 for estimating the propensity score or not. The default choice is 'TRUE'.}

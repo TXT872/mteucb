@@ -20,7 +20,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 
 The **mteucb** provides four functions as below:
 
--  `p_hut_gen()`: Estimation of  propensity score thourgh maximum likelihood estimation.
+-  `p_hut_gen()`: Estimation of  propensity score through maximum likelihood estimation.
 -  `beta_gen()`: Estimation of  finite parameters by partially linear estimation.
 -  `unif_gen()`: Computation of uniform confidence bands for an MTE function given the parametric part of MTE is known. 
 -  `uniform_con_gen()`: Computation of uniform confidence bands for an MTE function given data.
@@ -30,13 +30,13 @@ In this page, we introduce how to use `p_hut_gen()` for obtaining estimated prop
 #### Arguments
 
 -  `outcome_name`: The name of the outcome
--  `covariate_name`: The name of covariate
+-  `covariate_name`: The name of covariates
 -  `instrument_name`: The name of instrument variables
 -  `treatment_name`: The name of a treatment variable
 -  `data`: data.frame to be used for the estimation of MTE
 -  `family`: The distribution used for the calculation of the propensity score.
 You can choose "probit" or "logit". The default choice is "probit".
--  `trim`: To mitigate the effect of ill behavior of estimated propensity scores, we set those estimated values less than or larger than the value of trim  as the value of the value of trim. The default choice is "0.01".
+-   `trim`: To mitigate the effect of ill behavior of estimated propensity scores, we set values below the `trim` level to the `trim` level and values above (1 - `trim`) level to (1 - `trim`) level, respectively. The default choice is "0.01".
 -  `intercept`: 'TRUE' or 'FLASE' option to decide whether you include an intercept
 for estimating the propensity score or not. The default choice is 'TRUE'.
 
@@ -59,9 +59,6 @@ library(mteucb)
 library(MASS)
 
 # Generate artificial data
-#: The number of cross-sectional units
-# tau: The length of time series
-# continuous: Generate a continuous (resp. discrete) covariate if it is TRUE (resp. FALSE).
 set.seed(1)
 
 #Generate covariates and instruments with sample size 2000.
@@ -88,7 +85,7 @@ Expl<-cbind(X1,X2,X3,X4)
 Instr<-cbind(X1,X2,X3,X4,Z1,Z2,Z3,Z4)
 PInstr<-cbind(Z1,Z2,Z3,Z4)
 
-#Define parameters.
+#Set parameters.
 beta0<-c(0.5,0.1,-0.1,-0.5)
 beta1<-c(0.8,0.4,-0.4,-0.8)
 ganma0<-c(0.4,0.4,0.4,0.4,0.3,0.3,0.3,0.3)
@@ -106,13 +103,13 @@ for(i in 1:SS){
 demo=as.data.frame(cbind(Y,Expl,PInstr,D))
 ```
 
-We can check the generated variable by using `head()`.
+We can check generated variables by using `head()`.
 
 ```{r, eval = T, echo = T}
 head(demo)
 ```
 
-By using `p_hut_gen()`, we obtain a dataframe with the estimated propensity score.
+By using `p_hut_gen()`, we obtain a data frame with the estimated propensity score.
 ```{r, eval = T, echo = T}
 RESULT_P_hut<-p_hut_gen(outcome_name="Y",
                                  covariate_name=c("X1","X2","X3","X4"),

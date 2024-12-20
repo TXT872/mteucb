@@ -1,6 +1,6 @@
 #' Coeffeicients of Parametric Part of Marginal Treatment Effect (MTE) Function .
 #'
-#' `bet_gen` estimates a parametric part of a MTE function through the estimation method invented by Carneiro and Lee (2009). For details, see Carneiro and Lee (2009).
+#' `bet_gen` estimates the parametric part of a MTE function by the partially linear estimation.
 #'
 #' @param outcome_name The name of the outcome
 #' @param covariate_name The name of covariates
@@ -10,15 +10,14 @@
 #' @param family
 #' The distribution used for the calculation of the propensity score.
 #' You can choose "probit" or "logit". The default choice is "probit".
-#' @param trim,
-#' To mitigate the effect of ill behavior of estimtaed propensity scores,
-#' we set those less than the value of trim or larger than (1-the value of trim) as the value of the value of trim  or (1-the value of trim).
+#' @param trim, To mitigate the effect of ill behavior of estimated propensity scores,
+#' we set values below the trim level to the trim level and values above (1 - trim) level to (1 - trim) level, respectively. The default choice is “0.01”.
 #' @param intercept 'TRUE' or 'FLASE' option to decide whether you include an intercept
 #' for estimating the propensity score or not. The default choice is 'TRUE'.
 #' @param se_type The sort of standard error sought.
 #' The options are "HC0", "HC1" (or "stata", the equivalent) , "HC2" (default), "HC3", or "classical".
 #' @return A list that contains the following elements:
-#' \item{Beta}{The estimated value of parametric parts of MTE}
+#' \item{Beta}{The estimated values of the parametric part of MTE}
 #' \item{SE}{A standard error of each coeffecient of parametric parts of MTE}
 #'
 #' @export
@@ -79,9 +78,9 @@
 #'
 #'
 #' @references
-#' Carneiro and Lee (2009)
-#' Estimating distributions of potential outcomes using local instrumental variables with an application to changes in college enrollment and wage inequality.
-#' Journal of Econometrics, 2009, vol. 149, issue 2, 191-208
+#' Tsuda, Jin and Okui (2024+).
+#' Uniform Confidence Band for Marginal Treatment Effect Function.
+#' will be available on arXiv
 
 beta_gen<-function(outcome_name=outcome_name,
                    covariate_name=covariate_name,

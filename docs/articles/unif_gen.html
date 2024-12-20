@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">mteucb</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@ Okui (<a href="mailto:okuiryo@e.u-tokyo.ac.jp" class="email">okuiryo@e.u-tokyo.a
 <p>The <strong>mteucb</strong> provides four functions as below:</p>
 <ul>
 <li>
-<code><a href="../reference/p_hut_gen.html">p_hut_gen()</a></code>: Estimation of propensity score thourgh
+<code><a href="../reference/p_hut_gen.html">p_hut_gen()</a></code>: Estimation of propensity score through
 maximum likelihood estimation.</li>
 <li>
 <code><a href="../reference/beta_gen.html">beta_gen()</a></code>: Estimation of finite parameters by
@@ -107,7 +107,7 @@ propensity score and estimated finite parameters.</p>
 <li>
 <code>outcome_name</code>: The name of the outcome</li>
 <li>
-<code>covariate_name</code>: The name of covariate</li>
+<code>covariate_name</code>: The name of covariates</li>
 <li>
 <code>instrument_name</code>: The name of instrument variables</li>
 <li>
@@ -171,9 +171,6 @@ outcome, covariates, instruments, and tretament.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Generate artificial data</span></span>
-<span><span class="co">#: The number of cross-sectional units</span></span>
-<span><span class="co"># tau: The length of time series</span></span>
-<span><span class="co"># continuous: Generate a continuous (resp. discrete) covariate if it is TRUE (resp. FALSE).</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#Generate covariates and instruments with sample size 2000.</span></span>
@@ -216,7 +213,7 @@ outcome, covariates, instruments, and tretament.</p>
 <span>  <span class="va">Y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">&lt;-</span><span class="va">D</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">*</span><span class="op">(</span><span class="op">(</span><span class="va">beta1</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span><span class="va">Expl</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span><span class="op">+</span><span class="va">U1</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">D</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="op">(</span><span class="va">beta0</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span><span class="va">Expl</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span><span class="op">+</span><span class="va">U0</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="va">demo</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">Y</span>,<span class="va">Expl</span>,<span class="va">PInstr</span>,<span class="va">D</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>We can check the generated variable by using <code><a href="https://rdrr.io/r/utils/head.html" class="external-link">head()</a></code>.</p>
+<p>We can check generated variables by using <code><a href="https://rdrr.io/r/utils/head.html" class="external-link">head()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">demo</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           Y         X1          X2         X3          X4         Z1         Z2</span></span>

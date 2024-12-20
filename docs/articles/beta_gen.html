@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">mteucb</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@ Okui (<a href="mailto:okuiryo@e.u-tokyo.ac.jp" class="email">okuiryo@e.u-tokyo.a
 <p>The <strong>mteucb</strong> provides four functions as below:</p>
 <ul>
 <li>
-<code><a href="../reference/p_hut_gen.html">p_hut_gen()</a></code>: Estimation of propensity score thourgh
+<code><a href="../reference/p_hut_gen.html">p_hut_gen()</a></code>: Estimation of propensity score throurgh
 maximum likelihood estimation.</li>
 <li>
 <code><a href="../reference/beta_gen.html">beta_gen()</a></code>: Estimation of finite parameters by
@@ -97,7 +97,7 @@ an MTE function given the parametric part of MTE is known.</li>
 <code><a href="../reference/uniform_con_gen.html">uniform_con_gen()</a></code>: Computation of uniform confidence
 bands for an MTE function given data.</li>
 </ul>
-<p>In this page, we introduce how to use <code>beta_hut_gen()</code> for
+<p>In this page, we introduce how to use <code><a href="../reference/beta_gen.html">beta_gen()</a></code> for
 obtaining finite dimensional parameters of an MTE function.</p>
 <div class="section level4">
 <h4 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a>
@@ -120,9 +120,10 @@ the propensity score. You can choose “probit” or “logit”. The default
 choice is “probit”.</li>
 <li>
 <code>trim</code>: To mitigate the effect of ill behavior of
-estimtaed propensity scores, we set those less than the value of trim or
-larger than (1-the value of trim) as the value of the value of trim or
-(1-the value of trim).</li>
+estimated propensity scores, we set values below the <code>trim</code>
+level to the <code>trim</code> level and values above (1 -
+<code>trim</code>) level to (1 - <code>trim</code>) level, respectively.
+The default choice is “0.01”.</li>
 <li>
 <code>intercept</code>: ‘TRUE’ or ‘FLASE’ option to decide whether
 you include an intercept for estimating the propensity score or not. The
@@ -139,8 +140,8 @@ or “classical”.</li>
 <p><code><a href="../reference/beta_gen.html">beta_gen()</a></code> returns a list that contains the following
 two elements:</p>
 <ul>
-<li><p><code>Beta</code>: Finite parameters of an MTE function estimated
-by partially linear estimation</p></li>
+<li><p><code>Beta</code>: Estimated values of parameters of an MTE
+function estimated by partially linear estimation</p></li>
 <li><p><code>SE</code>: The standard error of estimated
 parameters</p></li>
 </ul>
@@ -150,15 +151,12 @@ parameters</p></li>
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>First, we generate the data used for the estimation of MTE, icluding
-outcome, covariates, instruments, and tretament.</p>
+outcome, covariates, instruments, and treatment.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load the package</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://TXT872.github.io/mteucb/">mteucb</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span></span>
 <span><span class="co"># Generate artificial data</span></span>
-<span><span class="co">#: The number of cross-sectional units</span></span>
-<span><span class="co"># tau: The length of time series</span></span>
-<span><span class="co"># continuous: Generate a continuous (resp. discrete) covariate if it is TRUE (resp. FALSE).</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#Generate covariates and instruments with sample size 2000.</span></span>
@@ -185,7 +183,7 @@ outcome, covariates, instruments, and tretament.</p>
 <span><span class="va">Instr</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">X1</span>,<span class="va">X2</span>,<span class="va">X3</span>,<span class="va">X4</span>,<span class="va">Z1</span>,<span class="va">Z2</span>,<span class="va">Z3</span>,<span class="va">Z4</span><span class="op">)</span></span>
 <span><span class="va">PInstr</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">Z1</span>,<span class="va">Z2</span>,<span class="va">Z3</span>,<span class="va">Z4</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#Define parameters.</span></span>
+<span><span class="co">#Set parameters.</span></span>
 <span><span class="va">beta0</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">0.1</span>,<span class="op">-</span><span class="fl">0.1</span>,<span class="op">-</span><span class="fl">0.5</span><span class="op">)</span></span>
 <span><span class="va">beta1</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>,<span class="fl">0.4</span>,<span class="op">-</span><span class="fl">0.4</span>,<span class="op">-</span><span class="fl">0.8</span><span class="op">)</span></span>
 <span><span class="va">ganma0</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.3</span>,<span class="fl">0.3</span>,<span class="fl">0.3</span>,<span class="fl">0.3</span><span class="op">)</span></span>
@@ -201,7 +199,7 @@ outcome, covariates, instruments, and tretament.</p>
 <span>  <span class="va">Y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">&lt;-</span><span class="va">D</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">*</span><span class="op">(</span><span class="op">(</span><span class="va">beta1</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span><span class="va">Expl</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span><span class="op">+</span><span class="va">U1</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">D</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="op">(</span><span class="va">beta0</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span><span class="va">Expl</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span><span class="op">+</span><span class="va">U0</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="va">demo</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">Y</span>,<span class="va">Expl</span>,<span class="va">PInstr</span>,<span class="va">D</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>We can check the generated variable by using <code><a href="https://rdrr.io/r/utils/head.html" class="external-link">head()</a></code>.</p>
+<p>We can check generated variables by using <code><a href="https://rdrr.io/r/utils/head.html" class="external-link">head()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">demo</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           Y         X1          X2         X3          X4         Z1         Z2</span></span>
@@ -249,11 +247,11 @@ MTE function with standard error.</p>
 <div class="section level2">
 <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a>
 </h2>
-<p>-To estimate a semiparametric coefficient of MTE, we use a partial
-linear estimation based on an extension of separation method used in
+<p>-To estimate a parametric part of MTE, we use a partial linear
+estimation based on an extension of the separation method used in
 Carneiro and Lee (2009). For more details, see Tsuda, T, Jin, Y., &amp;
 Okui, R. (2024+).</p>
-<p>-Our theory is agnostic about the choice of coefficient estimator.
+<p>-Our theory is agnostic about the choice of coefficient estimators.
 Other estimators such as those studied in Carneiro and Lee (2009) and
 Heckman, James J., Sergio Urzua, and Edward J. Vytlacil (2006), can be
 used if their convergence rates are sufficiently fast</p>
